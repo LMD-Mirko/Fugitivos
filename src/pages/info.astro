@@ -1,982 +1,1259 @@
 ---
-import { Image } from 'astro:assets';
-import coverImage from '../assets/imagen portada (1).jpeg';
-import logo from '../assets/logo.png';
-import img1 from '../assets/imagenes/530656272_18083226982870711_8446053491263136157_n.jpg';
-import img2 from '../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.jpg';
-import img3 from '../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.jpg';
-import img4 from '../assets/imagenes/DSC_1536.JPG.jpeg';
+import { Image } from "astro:assets";
+import coverImage from "../assets/imagen portada (1).jpeg";
+import logo from "../assets/logo.png";
+import img1 from "../assets/imagenes/530656272_18083226982870711_8446053491263136157_n.jpg";
+import img2 from "../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.jpg";
+import img3 from "../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.jpg";
+import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fugitivos — La Banda</title>
-  <meta name="description" content="Fugitivos — Banda de Rock. Conoce al grupo, escucha su música y síguelos en redes." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Permanent+Marker&display=swap" rel="stylesheet">
-  <style>
-    /* ══════════════════════════════════════════
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fugitivos — La Banda</title>
+    <meta
+      name="description"
+      content="Fugitivos — Banda de Rock. Conoce al grupo, escucha su música y síguelos en redes."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ══════════════════════════════════════════
        TOKENS
     ══════════════════════════════════════════ */
-    :root {
-      --cream : #fff5e6;
-      --black : #020202;
-      --gray  : #1a1a1a;
-      --muted : rgba(255,245,230,0.35);
-    }
+      :root {
+        --cream: #fff5e6;
+        --black: #020202;
+        --gray: #1a1a1a;
+        --muted: rgba(255, 245, 230, 0.35);
+      }
 
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        RESET & BASE
     ══════════════════════════════════════════ */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--cream) var(--black);
-    }
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--cream); }
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--cream) var(--black);
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--cream);
+      }
 
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: 'Oswald', sans-serif;
-      overflow-x: hidden;
-      cursor: none;
-    }
+      body {
+        background: var(--black);
+        color: var(--cream);
+        font-family: "Oswald", sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+      }
 
-    /* ── NOISE GRAIN ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
-      opacity: 0.18;
-      mix-blend-mode: overlay;
-      pointer-events: none;
-      z-index: 9000;
-    }
+      /* ── NOISE GRAIN ── */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+        opacity: 0.18;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        z-index: 9000;
+      }
 
-    /* ── CUSTOM CURSOR ── */
-    #cur {
-      position: fixed;
-      width: 16px; height: 16px;
-      border: 1px solid var(--cream);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, background .2s;
-    }
-    #cur::before, #cur::after {
-      content: ''; position: absolute; background: var(--cream);
-    }
-    #cur::before { width: 1px; height: 8px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    #cur::after  { width: 8px; height: 1px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    body:hover #cur { }
+      /* ── CUSTOM CURSOR ── */
+      #cur {
+        position: fixed;
+        width: 16px;
+        height: 16px;
+        border: 1px solid var(--cream);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.2s,
+          height 0.2s,
+          background 0.2s;
+      }
+      #cur::before,
+      #cur::after {
+        content: "";
+        position: absolute;
+        background: var(--cream);
+      }
+      #cur::before {
+        width: 1px;
+        height: 8px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #cur::after {
+        width: 8px;
+        height: 1px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      body:hover #cur {
+      }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(4vh);
-      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left  { opacity:0; transform:translateX(-6vw); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
-    .reveal-left.visible  { opacity:1; transform:translateX(0); }
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(4vh);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-6vw);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
 
-
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        § 1 — HERO
     ══════════════════════════════════════════ */
-    #hero {
-      position: relative;
-      min-height: 100dvh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      overflow: hidden;
-    }
-    @media(max-width:768px){
       #hero {
+        position: relative;
+        min-height: 100dvh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        overflow: hidden;
+      }
+      @media (max-width: 768px) {
+        #hero {
+          display: flex;
+          flex-direction: column;
+          min-height: 100dvh;
+        }
+        .hero-polaroids {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2vh 0 6vh;
+          flex: 0 0 auto;
+        }
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to top,
+            var(--black) 0%,
+            rgba(0, 0, 0, 0.5) 60%,
+            rgba(0, 0, 0, 0.2) 100%
+          ),
+          /* band photo placeholder — replace with real image */
+          radial-gradient(ellipse at 60% 40%, #2a2a2a 0%, #000 100%);
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Horizontal scan lines decoration */
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 3px,
+          rgba(0, 0, 0, 0.08) 3px,
+          rgba(0, 0, 0, 0.08) 4px
+        );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: clamp(6rem, 10vh, 9rem) clamp(1.5rem, 5vw, 5rem)
+          clamp(2rem, 3vh, 3rem);
         display: flex;
         flex-direction: column;
-        min-height: 100dvh;
+        justify-content: flex-end;
+        grid-column: 1;
+        flex: 1;
       }
+      @media (max-width: 768px) {
+        .hero-content {
+          padding: 7rem 1.5rem 1.5rem;
+          flex: 1;
+          min-height: 0;
+        }
+      }
+
+      /* ── POLAROID STACK (right column) ── */
       .hero-polaroids {
+        grid-column: 2;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2vh 0 6vh;
-        flex: 0 0 auto;
+        z-index: 2;
       }
-    }
 
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to top, var(--black) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%),
-        /* band photo placeholder — replace with real image */
-        radial-gradient(ellipse at 60% 40%, #2a2a2a 0%, #000 100%);
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* Horizontal scan lines decoration */
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px, transparent 3px,
-        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
-      );
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: clamp(6rem,10vh,9rem) clamp(1.5rem,5vw,5rem) clamp(2rem,3vh,3rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      grid-column: 1;
-      flex: 1;
-    }
-    @media(max-width:768px){
-      .hero-content {
-        padding: 7rem 1.5rem 1.5rem;
-        flex: 1;
-        min-height: 0;
-      }
-    }
-
-    /* ── POLAROID STACK (right column) ── */
-    .hero-polaroids {
-      grid-column: 2;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .polaroid-stack {
-      position: relative;
-      width: clamp(150px, 28vw, 320px);
-      height: clamp(185px, 34vw, 390px);
-      cursor: pointer;
-    }
-    @media(max-width:768px){
       .polaroid-stack {
-        width: 160px;
-        height: 195px;
+        position: relative;
+        width: clamp(150px, 28vw, 320px);
+        height: clamp(185px, 34vw, 390px);
+        cursor: pointer;
       }
-    }
+      @media (max-width: 768px) {
+        .polaroid-stack {
+          width: 160px;
+          height: 195px;
+        }
+      }
 
+      /* ── FAN OUT state ── */
+      .polaroid-stack.fanned .pol:nth-child(1) {
+        transform: rotate(-28deg) translate(-110%, 10%) scale(0.97);
+        z-index: 1;
+      }
+      .polaroid-stack.fanned .pol:nth-child(2) {
+        transform: rotate(-10deg) translate(-40%, 0%) scale(1);
+        z-index: 2;
+      }
+      .polaroid-stack.fanned .pol:nth-child(3) {
+        transform: rotate(8deg) translate(35%, 5%) scale(1);
+        z-index: 3;
+      }
+      .polaroid-stack.fanned .pol:nth-child(4) {
+        transform: rotate(26deg) translate(105%, 10%) scale(0.97);
+        z-index: 4;
+      }
 
-    /* ── FAN OUT state ── */
-    .polaroid-stack.fanned .pol:nth-child(1) { transform: rotate(-28deg) translate(-110%, 10%) scale(0.97); z-index: 1; }
-    .polaroid-stack.fanned .pol:nth-child(2) { transform: rotate(-10deg) translate(-40%,   0%) scale(1);    z-index: 2; }
-    .polaroid-stack.fanned .pol:nth-child(3) { transform: rotate(  8deg) translate( 35%,   5%) scale(1);    z-index: 3; }
-    .polaroid-stack.fanned .pol:nth-child(4) { transform: rotate( 26deg) translate(105%,  10%) scale(0.97); z-index: 4; }
+      /* Active card floats up when fanned */
+      .polaroid-stack.fanned .pol.pol-active {
+        z-index: 10 !important;
+        transform: rotate(0deg) translateY(-18px) scale(1.08) !important;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.9);
+      }
 
-    /* Active card floats up when fanned */
-    .polaroid-stack.fanned .pol.pol-active {
-      z-index: 10 !important;
-      transform: rotate(0deg) translateY(-18px) scale(1.08) !important;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.9);
-    }
+      /* Hint: small label to click */
+      .polaroid-stack::after {
+        content: "CLIC PARA VER";
+        position: absolute;
+        bottom: -2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.6rem;
+        letter-spacing: 4px;
+        color: rgba(255, 245, 230, 0.3);
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
+      .polaroid-stack.fanned::after {
+        opacity: 0;
+      }
 
-    /* Hint: small label to click */
-    .polaroid-stack::after {
-      content: 'CLIC PARA VER';
-      position: absolute;
-      bottom: -2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: .6rem;
-      letter-spacing: 4px;
-      color: rgba(255,245,230,0.3);
-      white-space: nowrap;
-      transition: opacity .3s;
-    }
-    .polaroid-stack.fanned::after { opacity: 0; }
+      .pol {
+        position: absolute;
+        inset: 0;
+        background: var(--cream);
+        padding: 10px 10px 36px 10px;
+        box-shadow:
+          0 8px 40px rgba(0, 0, 0, 0.8),
+          0 2px 8px rgba(0, 0, 0, 0.5);
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+      }
 
-    .pol {
-      position: absolute;
-      inset: 0;
-      background: var(--cream);
-      padding: 10px 10px 36px 10px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.5);
-      transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
-      will-change: transform;
-    }
+      .pol:nth-child(1) {
+        transform: rotate(-8deg) translateY(-4px);
+        z-index: 1;
+      }
+      .pol:nth-child(2) {
+        transform: rotate(3deg) translateY(2px);
+        z-index: 2;
+      }
+      .pol:nth-child(3) {
+        transform: rotate(-2deg) translateY(-2px);
+        z-index: 3;
+      }
+      .pol:nth-child(4) {
+        transform: rotate(6deg) translateY(4px);
+        z-index: 4;
+      }
 
-    .pol:nth-child(1) { transform: rotate(-8deg)  translateY(-4px); z-index: 1; }
-    .pol:nth-child(2) { transform: rotate( 3deg)  translateY( 2px); z-index: 2; }
-    .pol:nth-child(3) { transform: rotate(-2deg)  translateY(-2px); z-index: 3; }
-    .pol:nth-child(4) { transform: rotate( 6deg)  translateY( 4px); z-index: 4; }
+      .pol-photo {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+        display: block;
+      }
 
-    .pol-photo {
-      width: 100%; height: 80%;
-      object-fit: cover;
-      display: block;
-    }
+      /* CSS-only photo placeholders */
+      .pol-photo.ph1 {
+        background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 40%, #111 100%);
+      }
+      .pol-photo.ph2 {
+        background: linear-gradient(160deg, #2a2a2a 0%, #111 50%, #444 100%);
+      }
+      .pol-photo.ph3 {
+        background: linear-gradient(110deg, #111 0%, #2f2f2f 60%, #1a1a1a 100%);
+      }
+      .pol-photo.ph4 {
+        background: linear-gradient(145deg, #333 0%, #111 45%, #222 100%);
+      }
 
-    /* CSS-only photo placeholders */
-    .pol-photo.ph1 { background: linear-gradient(135deg,#1a1a1a 0%,#3a3a3a 40%,#111 100%); }
-    .pol-photo.ph2 { background: linear-gradient(160deg,#2a2a2a 0%,#111 50%,#444 100%); }
-    .pol-photo.ph3 { background: linear-gradient(110deg,#111  0%,#2f2f2f 60%,#1a1a1a 100%); }
-    .pol-photo.ph4 { background: linear-gradient(145deg,#333  0%,#111  45%,#222 100%); }
+      /* grain on each placeholder */
+      .pol-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+        opacity: 0.35;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
 
-    /* grain on each placeholder */
-    .pol-photo::after {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
-      opacity: 0.35; mix-blend-mode: overlay; pointer-events:none;
-    }
+      .pol-caption {
+        font-family: "Permanent Marker", cursive;
+        font-size: clamp(0.7rem, 1.2vw, 1rem);
+        color: #1a1a1a;
+        text-align: center;
+        padding-top: 8px;
+        line-height: 1.2;
+      }
 
-    .pol-caption {
-      font-family: 'Permanent Marker', cursive;
-      font-size: clamp(.7rem,1.2vw,1rem);
-      color: #1a1a1a;
-      text-align: center;
-      padding-top: 8px;
-      line-height: 1.2;
-    }
+      .hero-eyebrow {
+        font-size: clamp(0.65rem, 1.2vh, 1rem);
+        letter-spacing: 8px;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-bottom: 2vh;
+      }
 
-    .hero-eyebrow {
-      font-size: clamp(.65rem,1.2vh,1rem);
-      letter-spacing: 8px;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 2vh;
-    }
+      .hero-title {
+        font-size: clamp(4rem, 14vw, 18rem);
+        font-weight: 900;
+        line-height: 0.88;
+        letter-spacing: -3px;
+        text-transform: uppercase;
+        color: var(--cream);
+        filter: grayscale(1) brightness(1.6) sepia(0.3);
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: clamp(4.5rem, 22vw, 8rem);
+          letter-spacing: -2px;
+        }
+      }
 
-    .hero-title {
-      font-size: clamp(4rem, 14vw, 18rem);
-      font-weight: 900;
-      line-height: .88;
-      letter-spacing: -3px;
-      text-transform: uppercase;
-      color: var(--cream);
-      filter: grayscale(1) brightness(1.6) sepia(.3);
-    }
-    @media(max-width:768px){
-      .hero-title { font-size: clamp(4.5rem, 22vw, 8rem); letter-spacing:-2px; }
-    }
+      .hero-title span {
+        display: block;
+      }
 
-    .hero-title span {
-      display: block;
-    }
+      .hero-sub {
+        margin-top: 4vh;
+        font-size: clamp(0.9rem, 1.8vh, 1.4rem);
+        letter-spacing: 4px;
+        color: var(--muted);
+        text-transform: uppercase;
+        max-width: 40ch;
+      }
 
-    .hero-sub {
-      margin-top: 4vh;
-      font-size: clamp(.9rem,1.8vh,1.4rem);
-      letter-spacing: 4px;
-      color: var(--muted);
-      text-transform: uppercase;
-      max-width: 40ch;
-    }
+      .hero-scroll-hint {
+        margin-top: 2.5vh;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 5px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .hero-scroll-hint::before {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: var(--muted);
+      }
 
-    .hero-scroll-hint {
-      margin-top: 2.5vh;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      font-size: .7rem;
-      letter-spacing: 5px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-    .hero-scroll-hint::before {
-      content: '';
-      display: block;
-      width: 40px; height: 1px;
-      background: var(--muted);
-    }
+      /* logo top-left */
+      .hero-logo {
+        position: absolute;
+        top: clamp(1.5rem, 4vh, 3rem);
+        left: clamp(1.5rem, 4vw, 4rem);
+        z-index: 3;
+      }
+      .hero-logo img {
+        height: clamp(90px, 15vh, 180px);
+        width: auto;
+        filter: grayscale(1) brightness(1.6) sepia(0.3);
+      }
 
-    /* logo top-left */
-    .hero-logo {
-      position: absolute;
-      top: clamp(1.5rem,4vh,3rem);
-      left: clamp(1.5rem,4vw,4rem);
-      z-index: 3;
-    }
-    .hero-logo img {
-      height: clamp(90px,15vh,180px);
-      width: auto;
-      filter: grayscale(1) brightness(1.6) sepia(.3);
-    }
+      /* back link */
+      .hero-back {
+        position: absolute;
+        top: clamp(1.5rem, 4vh, 3rem);
+        right: clamp(1.5rem, 4vw, 4rem);
+        z-index: 3;
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        color: var(--muted);
+        text-decoration: none;
+        text-transform: uppercase;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .hero-back:hover {
+        color: var(--cream);
+        border-color: var(--cream);
+      }
 
-    /* back link */
-    .hero-back {
-      position: absolute;
-      top: clamp(1.5rem,4vh,3rem);
-      right: clamp(1.5rem,4vw,4rem);
-      z-index: 3;
-      font-size: .75rem;
-      letter-spacing: 4px;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      border-bottom: 1px solid transparent;
-      transition: color .3s, border-color .3s;
-    }
-    .hero-back:hover { color: var(--cream); border-color: var(--cream); }
-
-
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        § 2 — MANIFESTO
     ══════════════════════════════════════════ */
-    #manifesto {
-      padding: clamp(3rem,8vh,10rem) clamp(1.5rem,6vw,8rem);
-      border-top: 1px solid rgba(255,245,230,.06);
-    }
-    @media(max-width:768px){
-      #manifesto { padding: 3rem 1.5rem; }
-    }
+      #manifesto {
+        padding: clamp(3rem, 8vh, 10rem) clamp(1.5rem, 6vw, 8rem);
+        border-top: 1px solid rgba(255, 245, 230, 0.06);
+      }
+      @media (max-width: 768px) {
+        #manifesto {
+          padding: 3rem 1.5rem;
+        }
+      }
 
-    .manifesto-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: clamp(2rem,6vw,8rem);
-      align-items: start;
-    }
+      .manifesto-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: clamp(2rem, 6vw, 8rem);
+        align-items: start;
+      }
 
-    @media(max-width:640px){ .manifesto-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .manifesto-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-    .manifesto-label {
-      font-size: .7rem;
-      letter-spacing: 6px;
-      color: var(--muted);
-      text-transform: uppercase;
-      padding-top: .4rem;
-    }
+      .manifesto-label {
+        font-size: 0.7rem;
+        letter-spacing: 6px;
+        color: var(--muted);
+        text-transform: uppercase;
+        padding-top: 0.4rem;
+      }
 
-    .manifesto-text {
-      font-size: clamp(1.6rem,3.5vw,3.2rem);
-      font-weight: 300;
-      line-height: 1.25;
-      letter-spacing: -1px;
-      color: var(--cream);
-    }
+      .manifesto-text {
+        font-size: clamp(1.6rem, 3.5vw, 3.2rem);
+        font-weight: 300;
+        line-height: 1.25;
+        letter-spacing: -1px;
+        color: var(--cream);
+      }
 
-    .manifesto-text strong {
-      font-weight: 700;
-      font-style: italic;
-    }
+      .manifesto-text strong {
+        font-weight: 700;
+        font-style: italic;
+      }
 
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        § 3 — SOCIAL LINKS (EDITORIAL STRIPS)
     ══════════════════════════════════════════ */
-    #links {
-      border-top: 1px solid rgba(255,245,230,.06);
-    }
+      #links {
+        border-top: 1px solid rgba(255, 245, 230, 0.06);
+      }
 
-    .links-header {
-      padding: clamp(3rem,6vh,5rem) clamp(1.5rem,6vw,8rem) 0;
-      font-size: .7rem;
-      letter-spacing: 6px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
+      .links-header {
+        padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 8rem) 0;
+        font-size: 0.7rem;
+        letter-spacing: 6px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
 
-    .social-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: clamp(1.4rem,3.5vh,2.2rem) clamp(1.2rem,6vw,8rem);
-      min-height: 64px; /* accessible touch target */
-      border-bottom: 1px solid rgba(255,245,230,.06);
-      text-decoration: none;
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-      transition: color .35s;
-      gap: 2rem;
-      -webkit-tap-highlight-color: transparent;
-    }
+      .social-strip {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: clamp(1.4rem, 3.5vh, 2.2rem) clamp(1.2rem, 6vw, 8rem);
+        min-height: 64px; /* accessible touch target */
+        border-bottom: 1px solid rgba(255, 245, 230, 0.06);
+        text-decoration: none;
+        color: var(--cream);
+        position: relative;
+        overflow: hidden;
+        transition: color 0.35s;
+        gap: 2rem;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-    /* fill from left on hover */
-    .social-strip::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--cream);
-      transform: translateX(-101%);
-      transition: transform .45s cubic-bezier(.77,0,.18,1);
-      z-index: 0;
-    }
-    .social-strip:hover::before { transform: translateX(0); }
-    .social-strip:hover { color: var(--black); }
+      /* fill from left on hover */
+      .social-strip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--cream);
+        transform: translateX(-101%);
+        transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+        z-index: 0;
+      }
+      .social-strip:hover::before {
+        transform: translateX(0);
+      }
+      .social-strip:hover {
+        color: var(--black);
+      }
 
-    .strip-left {
-      display: flex;
-      align-items: center;
-      gap: clamp(1rem,3vw,3rem);
-      position: relative; z-index: 1;
-    }
+      .strip-left {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 3vw, 3rem);
+        position: relative;
+        z-index: 1;
+      }
 
-    .strip-num {
-      font-size: clamp(.65rem,1vh,.85rem);
-      letter-spacing: 4px;
-      opacity: .4;
-      min-width: 2.5rem;
-    }
+      .strip-num {
+        font-size: clamp(0.65rem, 1vh, 0.85rem);
+        letter-spacing: 4px;
+        opacity: 0.4;
+        min-width: 2.5rem;
+      }
 
-    .strip-icon {
-      width: clamp(28px,4vh,42px);
-      height: clamp(28px,4vh,42px);
-      opacity: .7;
-      flex-shrink: 0;
-    }
+      .strip-icon {
+        width: clamp(28px, 4vh, 42px);
+        height: clamp(28px, 4vh, 42px);
+        opacity: 0.7;
+        flex-shrink: 0;
+      }
 
-    .strip-name {
-      font-size: clamp(1.3rem, 5vw, 3.5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
+      .strip-name {
+        font-size: clamp(1.3rem, 5vw, 3.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
 
-    .strip-handle {
-      font-size: clamp(.6rem,1.1vh,.85rem);
-      letter-spacing: 3px;
-      opacity: .4;
-      font-weight: 300;
-    }
-    @media(max-width:480px){ .strip-handle { display: none; } }
+      .strip-handle {
+        font-size: clamp(0.6rem, 1.1vh, 0.85rem);
+        letter-spacing: 3px;
+        opacity: 0.4;
+        font-weight: 300;
+      }
+      @media (max-width: 480px) {
+        .strip-handle {
+          display: none;
+        }
+      }
 
-    .strip-arrow {
-      position: relative; z-index: 1;
-      font-size: clamp(1.2rem,2.5vw,2.5rem);
-      opacity: .3;
-      transition: opacity .3s, transform .3s;
-    }
-    .social-strip:hover .strip-arrow { opacity: 1; transform: translateX(6px); }
+      .strip-arrow {
+        position: relative;
+        z-index: 1;
+        font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+        opacity: 0.3;
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+      .social-strip:hover .strip-arrow {
+        opacity: 1;
+        transform: translateX(6px);
+      }
 
-
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        SINGLES TICKER
     ══════════════════════════════════════════ */
-    .singles-ticker {
-      overflow: hidden;
-      border-top: 1px solid rgba(255,245,230,.06);
-      border-bottom: 1px solid rgba(255,245,230,.06);
-      padding: 1.6vh 0;
-      background: transparent;
-      position: relative;
-    }
-    .singles-ticker::before,
-    .singles-ticker::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 8vw; z-index: 1;
-      pointer-events: none;
-    }
-    .singles-ticker::before { left: 0;  background: linear-gradient(to right, var(--black), transparent); }
-    .singles-ticker::after  { right: 0; background: linear-gradient(to left,  var(--black), transparent); }
+      .singles-ticker {
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 245, 230, 0.06);
+        border-bottom: 1px solid rgba(255, 245, 230, 0.06);
+        padding: 1.6vh 0;
+        background: transparent;
+        position: relative;
+      }
+      .singles-ticker::before,
+      .singles-ticker::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 8vw;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .singles-ticker::before {
+        left: 0;
+        background: linear-gradient(to right, var(--black), transparent);
+      }
+      .singles-ticker::after {
+        right: 0;
+        background: linear-gradient(to left, var(--black), transparent);
+      }
 
-    .ticker-track {
-      display: flex;
-      align-items: center;
-      gap: clamp(1.5rem, 4vw, 4rem);
-      white-space: nowrap;
-      animation: tickerScroll 40s linear infinite;
-      width: max-content;
-    }
-    .ticker-track span {
-      font-size: clamp(.75rem, 1.4vw, 1.1rem);
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.55;
-    }
-    .ticker-dot {
-      font-size: .6rem !important;
-      opacity: 0.3 !important;
-      letter-spacing: 0 !important;
-    }
-    @keyframes tickerScroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    /* Pause on hover (desktop) */
-    .singles-ticker:hover .ticker-track { animation-play-state: paused; }
+      .ticker-track {
+        display: flex;
+        align-items: center;
+        gap: clamp(1.5rem, 4vw, 4rem);
+        white-space: nowrap;
+        animation: tickerScroll 40s linear infinite;
+        width: max-content;
+      }
+      .ticker-track span {
+        font-size: clamp(0.75rem, 1.4vw, 1.1rem);
+        font-weight: 700;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.55;
+      }
+      .ticker-dot {
+        font-size: 0.6rem !important;
+        opacity: 0.3 !important;
+        letter-spacing: 0 !important;
+      }
+      @keyframes tickerScroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      /* Pause on hover (desktop) */
+      .singles-ticker:hover .ticker-track {
+        animation-play-state: paused;
+      }
 
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        § 4 — SINGLE SHOWCASE
     ══════════════════════════════════════════ */
-    #single {
-      padding: clamp(3rem,8vh,10rem) clamp(1.5rem,6vw,8rem);
-      border-top: 1px solid rgba(255,245,230,.06);
-    }
-    @media(max-width:768px){
-      #single { padding: 3rem 1.5rem; }
-    }
+      #single {
+        padding: clamp(3rem, 8vh, 10rem) clamp(1.5rem, 6vw, 8rem);
+        border-top: 1px solid rgba(255, 245, 230, 0.06);
+      }
+      @media (max-width: 768px) {
+        #single {
+          padding: 3rem 1.5rem;
+        }
+      }
 
-    .single-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem,6vw,8rem);
-      align-items: center;
-    }
-    @media(max-width:700px){ .single-grid { grid-template-columns:1fr; } }
+      .single-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(3rem, 6vw, 8rem);
+        align-items: center;
+      }
+      @media (max-width: 700px) {
+        .single-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-    .single-cover {
-      aspect-ratio: 1;
-      background: var(--gray);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,245,230,.08);
-    }
-    .single-cover::before {
-      content: 'PORTADA\ASÍ';
-      white-space: pre;
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      letter-spacing: 6px;
-      color: rgba(255,245,230,.15);
-      text-align: center;
-    }
-    /* corner marks */
-    .single-cover::after {
-      content: '';
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(255,245,230,.08);
-      pointer-events: none;
-    }
+      .single-cover {
+        aspect-ratio: 1;
+        background: var(--gray);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 245, 230, 0.08);
+      }
+      .single-cover::before {
+        content: "PORTADA\ASÍ";
+        white-space: pre;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        letter-spacing: 6px;
+        color: rgba(255, 245, 230, 0.15);
+        text-align: center;
+      }
+      /* corner marks */
+      .single-cover::after {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border: 1px solid rgba(255, 245, 230, 0.08);
+        pointer-events: none;
+      }
 
-    .single-info { display: flex; flex-direction: column; gap: 3vh; }
+      .single-info {
+        display: flex;
+        flex-direction: column;
+        gap: 3vh;
+      }
 
-    .single-eyebrow {
-      font-size: .7rem;
-      letter-spacing: 6px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
+      .single-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 6px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
 
-    .single-title {
-      font-size: clamp(2.5rem,6vw,6rem);
-      font-weight: 900;
-      line-height: .9;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      color: var(--cream);
-    }
+      .single-title {
+        font-size: clamp(2.5rem, 6vw, 6rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        color: var(--cream);
+      }
 
-    .single-date {
-      font-size: clamp(.75rem,1.4vh,1rem);
-      letter-spacing: 6px;
-      color: var(--muted);
-      text-transform: uppercase;
-      border-left: 2px solid var(--cream);
-      padding-left: 1rem;
-    }
+      .single-date {
+        font-size: clamp(0.75rem, 1.4vh, 1rem);
+        letter-spacing: 6px;
+        color: var(--muted);
+        text-transform: uppercase;
+        border-left: 2px solid var(--cream);
+        padding-left: 1rem;
+      }
 
-    .single-ctas {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2vh;
-      margin-top: 1vh;
-    }
+      .single-ctas {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2vh;
+        margin-top: 1vh;
+      }
 
-    .single-cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.6vh 2.4vh;
-      border: 1px solid rgba(255,245,230,.15);
-      text-decoration: none;
-      color: var(--cream);
-      font-size: clamp(.8rem,1.4vh,1.1rem);
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      transition: background .35s, color .35s;
-      position: relative;
-      overflow: hidden;
-    }
-    .single-cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--cream);
-      transform: translateX(-101%);
-      transition: transform .4s cubic-bezier(.77,0,.18,1);
-    }
-    .single-cta:hover::before { transform: translateX(0); }
-    .single-cta:hover { color: var(--black); }
-    .single-cta span, .single-cta svg { position: relative; z-index: 1; }
+      .single-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6vh 2.4vh;
+        border: 1px solid rgba(255, 245, 230, 0.15);
+        text-decoration: none;
+        color: var(--cream);
+        font-size: clamp(0.8rem, 1.4vh, 1.1rem);
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition:
+          background 0.35s,
+          color 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .single-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--cream);
+        transform: translateX(-101%);
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+      }
+      .single-cta:hover::before {
+        transform: translateX(0);
+      }
+      .single-cta:hover {
+        color: var(--black);
+      }
+      .single-cta span,
+      .single-cta svg {
+        position: relative;
+        z-index: 1;
+      }
 
-
-    /* ══════════════════════════════════════════
+      /* ══════════════════════════════════════════
        § 5 — FOOTER
     ══════════════════════════════════════════ */
-    footer {
-      border-top: 1px solid rgba(255,245,230,.06);
-      padding: clamp(2rem,5vh,4rem) clamp(1.5rem,6vw,8rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
+      footer {
+        border-top: 1px solid rgba(255, 245, 230, 0.06);
+        padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 6vw, 8rem);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
 
-    .footer-copy {
-      font-size: .7rem;
-      letter-spacing: 4px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
+      .footer-copy {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
 
-    .footer-back {
-      font-size: .7rem;
-      letter-spacing: 4px;
-      color: var(--muted);
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: color .3s, border-color .3s;
-    }
-    .footer-back:hover { color: var(--cream); border-color: var(--cream); }
+      .footer-back {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        color: var(--muted);
+        text-transform: uppercase;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .footer-back:hover {
+        color: var(--cream);
+        border-color: var(--cream);
+      }
 
-    /* vertical rule divider */
-    .v-rule {
-      width: 1px;
-      height: clamp(4rem,10vh,8rem);
-      background: rgba(255,245,230,.08);
-      margin: 0 auto;
-    }
+      /* vertical rule divider */
+      .v-rule {
+        width: 1px;
+        height: clamp(4rem, 10vh, 8rem);
+        background: rgba(255, 245, 230, 0.08);
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cur"></div>
 
-  </style>
-</head>
-<body>
-  <div id="cur"></div>
+    <!-- ══ § 1 HERO ══ -->
+    <section id="hero">
+      <div class="hero-bg"></div>
 
-  <!-- ══ § 1 HERO ══ -->
-  <section id="hero">
-    <div class="hero-bg"></div>
+      <a href="/teaser" class="hero-back">← Teaser</a>
+      <div class="hero-logo">
+        <img src={logo.src} alt="Fugitivos" />
+      </div>
 
-    <a href="/teaser" class="hero-back">← Teaser</a>
-    <div class="hero-logo">
-      <img src={logo.src} alt="Fugitivos" />
-    </div>
+      <!-- LEFT: Typography -->
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal">Banda de Rock · Lima, Perú</p>
+        <h1 class="hero-title reveal">
+          <span>FUGI</span>
+          <span>TIVOS</span>
+        </h1>
+        <p class="hero-sub reveal">Banda de rock.</p>
+        <div class="hero-scroll-hint reveal">scroll</div>
+      </div>
 
-    <!-- LEFT: Typography -->
-    <div class="hero-content">
-      <p class="hero-eyebrow reveal">Banda de Rock · Lima, Perú</p>
-      <h1 class="hero-title reveal">
-        <span>FUGI</span>
-        <span>TIVOS</span>
-      </h1>
-      <p class="hero-sub reveal">
-        Banda de rock.
-      </p>
-      <div class="hero-scroll-hint reveal">scroll</div>
-    </div>
-
-    <!-- RIGHT: Polaroid Stack -->
-    <div class="hero-polaroids">
-      <div class="polaroid-stack" id="pol-stack">
-        <div class="pol">
-          <Image src={img1} alt="Lima" class="pol-photo" />
-          <p class="pol-caption">Lima, 2025</p>
+      <!-- RIGHT: Polaroid Stack -->
+      <div class="hero-polaroids">
+        <div class="polaroid-stack" id="pol-stack">
+          <div class="pol">
+            <Image src={img1} alt="Lima" class="pol-photo" />
+            <p class="pol-caption">2025</p>
+          </div>
+          <div class="pol">
+            <Image src={img2} alt="Ensayo" class="pol-photo" />
+            <p class="pol-caption">2025</p>
+          </div>
+          <div class="pol">
+            <Image src={img3} alt="Fugitivos" class="pol-photo" />
+            <p class="pol-caption">2025</p>
+          </div>
+          <div class="pol">
+            <Image src={img4} alt="Rock" class="pol-photo" />
+            <p class="pol-caption">Rock 2026</p>
+          </div>
         </div>
-        <div class="pol">
-          <Image src={img2} alt="Ensayo" class="pol-photo" />
-          <p class="pol-caption">Ensayo</p>
+      </div>
+    </section>
+
+    <!-- ══ § 2 MANIFESTO ══ -->
+    <section id="manifesto">
+      <div class="manifesto-grid">
+        <div class="manifesto-label reveal-left">Quiénes somos</div>
+        <blockquote class="manifesto-text reveal">
+          Cuatro tipos que decidieron que el silencio no era una opción.
+          <strong>Fugitivos</strong> nació del rock que escuchamos de chicos y de
+          la rabia que cargamos de adultos. Esto no es música. Es una declaración.
+        </blockquote>
+      </div>
+    </section>
+
+    <div class="v-rule reveal"></div>
+
+    <!-- ══ § 3 SOCIAL STRIPS ══ -->
+    <section id="links">
+      <p class="links-header reveal">Síguenos</p>
+
+      <a
+        href="https://www.instagram.com/oficialfugitivos_/"
+        target="_blank"
+        rel="noopener"
+        class="social-strip reveal"
+      >
+        <div class="strip-left">
+          <span class="strip-num">01</span>
+          <svg
+            class="strip-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+            <circle cx="12" cy="12" r="5"></circle>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"
+            ></circle>
+          </svg>
+          <div>
+            <div class="strip-name">Instagram</div>
+            <div class="strip-handle">@fugitivosoficial</div>
+          </div>
         </div>
-        <div class="pol">
-          <Image src={img3} alt="Fugitivos" class="pol-photo" />
-          <p class="pol-caption">Fugitivos</p>
+        <span class="strip-arrow">→</span>
+      </a>
+
+      <a
+        href="https://www.facebook.com/people/Fugitivos/61574167808925/?rdid=r6VssdoNaMVZQXHO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16KapV9g9g%2F"
+        target="_blank"
+        rel="noopener"
+        class="social-strip reveal"
+      >
+        <div class="strip-left">
+          <span class="strip-num">02</span>
+          <svg
+            class="strip-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+            ></path>
+          </svg>
+          <div>
+            <div class="strip-name">Facebook</div>
+            <div class="strip-handle">Fugitivos</div>
+          </div>
         </div>
-        <div class="pol">
-          <Image src={img4} alt="Rock" class="pol-photo" />
-          <p class="pol-caption">Rock ·  2026</p>
+        <span class="strip-arrow">→</span>
+      </a>
+
+      <a
+        href="https://www.tiktok.com/@fugitivos104?is_from_webapp=1&sender_device=pc"
+        target="_blank"
+        rel="noopener"
+        class="social-strip reveal"
+      >
+        <div class="strip-left">
+          <span class="strip-num">03</span>
+          <svg
+            class="strip-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+          </svg>
+          <div>
+            <div class="strip-name">TikTok</div>
+            <div class="strip-handle">@fugitivos104</div>
+          </div>
         </div>
+        <span class="strip-arrow">→</span>
+      </a>
+
+      <a
+        href="https://www.youtube.com/@fugitivosband"
+        target="_blank"
+        rel="noopener"
+        class="social-strip reveal"
+      >
+        <div class="strip-left">
+          <span class="strip-num">04</span>
+          <svg
+            class="strip-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="3"></rect>
+            <path d="M10 9l6 3-6 3V9z"></path>
+          </svg>
+          <div>
+            <div class="strip-name">YouTube</div>
+            <div class="strip-handle">FUGITIVOS</div>
+          </div>
+        </div>
+        <span class="strip-arrow">→</span>
+      </a>
+
+      <a
+        href="https://open.spotify.com/intl-es/artist/7LT1VRuqPekVJnMKwkzUyn?nd=1&dlsi=00bb196097c5421a"
+        target="_blank"
+        rel="noopener"
+        class="social-strip reveal"
+      >
+        <div class="strip-left">
+          <span class="strip-num">05</span>
+          <svg
+            class="strip-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12.5a9 9 0 0 1 8 0"></path>
+            <path d="M6.5 9.5a12 12 0 0 1 11 0"></path>
+            <path d="M9.5 15.5a6 6 0 0 1 5 0"></path>
+          </svg>
+          <div>
+            <div class="strip-name">Spotify</div>
+            <div class="strip-handle">FUGITIVOS</div>
+          </div>
+        </div>
+        <span class="strip-arrow">→</span>
+      </a>
+    </section>
+
+    <div class="v-rule reveal"></div>
+
+    <!-- ══ SINGLES TICKER ══ -->
+    <div class="singles-ticker">
+      <div class="ticker-track">
+        <span>EL PESO DEL MUNDO</span><span class="ticker-dot">✦</span>
+        <span>EL MUNDO A TUS PIES</span><span class="ticker-dot">✦</span>
+        <span>TIEMPO EN LA OSCURIDAD</span><span class="ticker-dot">✦</span>
+        <span>CIUDAD DE PIEDRA</span><span class="ticker-dot">✦</span>
+        <span>MORFEO</span><span class="ticker-dot">✦</span>
+        <span>COLT</span><span class="ticker-dot">✦</span>
+        <span>TUS OJOS NEGROS</span><span class="ticker-dot">✦</span>
+        <span>MI VERDAD</span><span class="ticker-dot">✦</span>
+        <span>LA VIDA ES UNA GRAN MENTIRA</span><span class="ticker-dot">✦</span
+        >
+        <span>MUCHACHO PERDIDO</span><span class="ticker-dot">✦</span>
+        <span>DELIRIO</span><span class="ticker-dot">✦</span>
+        <span>LUNÁTICA</span><span class="ticker-dot">✦</span>
+        <span>TU CUERPO</span><span class="ticker-dot">✦</span>
+        <span>NUEVO COMIENZO</span><span class="ticker-dot">✦</span>
+        <span>EL PESO DEL MUNDO</span><span class="ticker-dot">✦</span>
+        <span>EL MUNDO A TUS PIES</span><span class="ticker-dot">✦</span>
+        <span>TIEMPO EN LA OSCURIDAD</span><span class="ticker-dot">✦</span>
+        <span>CIUDAD DE PIEDRA</span><span class="ticker-dot">✦</span>
+        <span>MORFEO</span><span class="ticker-dot">✦</span>
+        <span>COLT</span><span class="ticker-dot">✦</span>
+        <span>TUS OJOS NEGROS</span><span class="ticker-dot">✦</span>
+        <span>MI VERDAD</span><span class="ticker-dot">✦</span>
+        <span>LA VIDA ES UNA GRAN MENTIRA</span><span class="ticker-dot">✦</span
+        >
+        <span>MUCHACHO PERDIDO</span><span class="ticker-dot">✦</span>
+        <span>DELIRIO</span><span class="ticker-dot">✦</span>
+        <span>LUNÁTICA</span><span class="ticker-dot">✦</span>
+        <span>TU CUERPO</span><span class="ticker-dot">✦</span>
+        <span>MENTIRAS BONITAS</span><span class="ticker-dot">✦</span>
+        <span>NUEVO COMIENZO</span><span class="ticker-dot">✦</span>
       </div>
     </div>
-  </section>
 
-  <!-- ══ § 2 MANIFESTO ══ -->
-  <section id="manifesto">
-    <div class="manifesto-grid">
-      <div class="manifesto-label reveal-left">Quiénes somos</div>
-      <blockquote class="manifesto-text reveal">
-        Cuatro tipos que decidieron que el silencio no era una opción.
-        <strong>Fugitivos</strong> nació del rock que escuchamos de chicos
-        y de la rabia que cargamos de adultos. Esto no es música.
-        Es una declaración.
-      </blockquote>
-    </div>
-  </section>
+    <!-- ══ § 4 SINGLE ══ -->
+    <section id="single">
+      <div class="single-grid">
+        <div class="single-cover reveal">
+          <Image
+            src={coverImage}
+            alt="Portada Hasta Mis Miedos"
+            style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;"
+          />
+        </div>
 
-  <div class="v-rule reveal"></div>
+        <div class="single-info">
+          <p class="single-eyebrow reveal">Sencillo</p>
+          <h2 class="single-title reveal">
+            Hasta<br />Mis<br />Miedos
+          </h2>
+          <p class="single-date reveal">Disponible · 2026</p>
 
-  <!-- ══ § 3 SOCIAL STRIPS ══ -->
-  <section id="links">
-    <p class="links-header reveal">Síguenos</p>
-
-    <a href="https://www.instagram.com/oficialfugitivos_/" target="_blank" rel="noopener" class="social-strip reveal">
-      <div class="strip-left">
-        <span class="strip-num">01</span>
-        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="2" width="20" height="20" rx="5"/>
-          <circle cx="12" cy="12" r="5"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-        <div>
-          <div class="strip-name">Instagram</div>
-          <div class="strip-handle">@fugitivosoficial</div>
+          <div class="single-ctas">
+            <a
+              href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
+              class="single-cta reveal"
+            >
+              <span>Pre-Guardar en Spotify</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+              >
+            </a>
+            <a
+              href="https://youtu.be/IZmf1BATdL8?si=9LzPFHyqj2Tip20v"
+              class="single-cta reveal"
+            >
+              <span>Ver en YouTube</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+              >
+            </a>
+          </div>
         </div>
       </div>
-      <span class="strip-arrow">→</span>
-    </a>
+    </section>
 
-    <a href="https://www.facebook.com/people/Fugitivos/61574167808925/?rdid=r6VssdoNaMVZQXHO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16KapV9g9g%2F" target="_blank" rel="noopener" class="social-strip reveal">
-      <div class="strip-left">
-        <span class="strip-num">02</span>
-        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-        </svg>
-        <div>
-          <div class="strip-name">Facebook</div>
-          <div class="strip-handle">Fugitivos</div>
-        </div>
-      </div>
-      <span class="strip-arrow">→</span>
-    </a>
-
-    <a href="https://www.tiktok.com/@fugitivos104?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-strip reveal">
-      <div class="strip-left">
-        <span class="strip-num">03</span>
-        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-        </svg>
-        <div>
-          <div class="strip-name">TikTok</div>
-          <div class="strip-handle">@fugitivos104</div>
-        </div>
-      </div>
-      <span class="strip-arrow">→</span>
-    </a>
-
-    <a href="https://www.youtube.com/@fugitivosband" target="_blank" rel="noopener" class="social-strip reveal">
-      <div class="strip-left">
-        <span class="strip-num">04</span>
-        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="4" width="20" height="16" rx="3"/>
-          <path d="M10 9l6 3-6 3V9z"/>
-        </svg>
-        <div>
-          <div class="strip-name">YouTube</div>
-          <div class="strip-handle">FUGITIVOS</div>
-        </div>
-      </div>
-      <span class="strip-arrow">→</span>
-    </a>
-
-    <a href="https://open.spotify.com/intl-es/artist/7LT1VRuqPekVJnMKwkzUyn?nd=1&dlsi=00bb196097c5421a" target="_blank" rel="noopener" class="social-strip reveal">
-      <div class="strip-left">
-        <span class="strip-num">05</span>
-        <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M8 12.5a9 9 0 0 1 8 0"/>
-          <path d="M6.5 9.5a12 12 0 0 1 11 0"/>
-          <path d="M9.5 15.5a6 6 0 0 1 5 0"/>
-        </svg>
-        <div>
-          <div class="strip-name">Spotify</div>
-          <div class="strip-handle">FUGITIVOS</div>
-        </div>
-      </div>
-      <span class="strip-arrow">→</span>
-    </a>
-  </section>
-
-  <div class="v-rule reveal"></div>
-
-  <!-- ══ SINGLES TICKER ══ -->
-  <div class="singles-ticker">
-    <div class="ticker-track">
-      <span>EL PESO DEL MUNDO</span><span class="ticker-dot">✦</span>
-      <span>EL MUNDO A TUS PIES</span><span class="ticker-dot">✦</span>
-      <span>TIEMPO EN LA OSCURIDAD</span><span class="ticker-dot">✦</span>
-      <span>CIUDAD DE PIEDRA</span><span class="ticker-dot">✦</span>
-      <span>MORFEO</span><span class="ticker-dot">✦</span>
-      <span>COLT</span><span class="ticker-dot">✦</span>
-      <span>TUS OJOS NEGROS</span><span class="ticker-dot">✦</span>
-      <span>MI VERDAD</span><span class="ticker-dot">✦</span>
-      <span>LA VIDA ES UNA GRAN MENTIRA</span><span class="ticker-dot">✦</span>
-      <span>MUCHACHO PERDIDO</span><span class="ticker-dot">✦</span>
-      <span>DELIRIO</span><span class="ticker-dot">✦</span>
-      <span>LUNÁTICA</span><span class="ticker-dot">✦</span>
-      <span>TU CUERPO</span><span class="ticker-dot">✦</span>
-      <span>CONSEJO DE AMOR</span><span class="ticker-dot">✦</span>
-      <span>MENTIRAS BONITAS</span><span class="ticker-dot">✦</span>
-      <span>NUEVO COMIENZO</span><span class="ticker-dot">✦</span>
-      <span>MI EX</span><span class="ticker-dot">✦</span>
-      <span>AMIGOS NO POR FAVOR</span><span class="ticker-dot">✦</span>
-      <span>TE DEJÉ</span><span class="ticker-dot">✦</span>
-      <!-- duplicate for seamless loop -->
-      <span>EL PESO DEL MUNDO</span><span class="ticker-dot">✦</span>
-      <span>EL MUNDO A TUS PIES</span><span class="ticker-dot">✦</span>
-      <span>TIEMPO EN LA OSCURIDAD</span><span class="ticker-dot">✦</span>
-      <span>CIUDAD DE PIEDRA</span><span class="ticker-dot">✦</span>
-      <span>MORFEO</span><span class="ticker-dot">✦</span>
-      <span>COLT</span><span class="ticker-dot">✦</span>
-      <span>TUS OJOS NEGROS</span><span class="ticker-dot">✦</span>
-      <span>MI VERDAD</span><span class="ticker-dot">✦</span>
-      <span>LA VIDA ES UNA GRAN MENTIRA</span><span class="ticker-dot">✦</span>
-      <span>MUCHACHO PERDIDO</span><span class="ticker-dot">✦</span>
-      <span>DELIRIO</span><span class="ticker-dot">✦</span>
-      <span>LUNÁTICA</span><span class="ticker-dot">✦</span>
-      <span>TU CUERPO</span><span class="ticker-dot">✦</span>
-      <span>CONSEJO DE AMOR</span><span class="ticker-dot">✦</span>
-      <span>MENTIRAS BONITAS</span><span class="ticker-dot">✦</span>
-      <span>NUEVO COMIENZO</span><span class="ticker-dot">✦</span>
-      <span>MI EX</span><span class="ticker-dot">✦</span>
-      <span>AMIGOS NO POR FAVOR</span><span class="ticker-dot">✦</span>
-      <span>TE DEJÉ</span><span class="ticker-dot">✦</span>
-    </div>
-  </div>
-
-  <!-- ══ § 4 SINGLE ══ -->
-  <section id="single">
-    <div class="single-grid">
-      <div class="single-cover reveal">
-        <Image src={coverImage} alt="Portada Hasta Mis Miedos" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;" />
-      </div>
-
-      <div class="single-info">
-        <p class="single-eyebrow reveal">Sencillo</p>
-        <h2 class="single-title reveal">
-          Hasta<br/>Mis<br/>Miedos
-        </h2>
-        <p class="single-date reveal"> Disponible · 2026</p>
-
-        <div class="single-ctas">
-          <a href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr" class="single-cta reveal">
-            <span>Pre-Guardar en Spotify</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <!-- ══ § 5 FOOTER ══ -->
+    <footer>
+      <div style="display: flex; flex-direction: column; gap: 1vh;">
+        <span class="footer-copy">© 2026 Fugitivos. Todos los derechos reservados.</span>
+        <span style="font-size: 0.65rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+          Desarrollado por NEXTCODE LMD
+          <a href="#" style="color: inherit; transition: opacity 0.3s; opacity: 0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+              <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
           </a>
-          <a href="https://youtu.be/IZmf1BATdL8?si=9LzPFHyqj2Tip20v" class="single-cta reveal">
-            <span>Ver en YouTube</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
+        </span>
       </div>
-    </div>
-  </section>
+      <a href="/teaser" class="footer-back">← Volver al Teaser</a>
+    </footer>
 
-  <!-- ══ § 5 FOOTER ══ -->
-  <footer>
-    <span class="footer-copy">© 2026 Fugitivos. Todos los derechos reservados.</span>
-    <a href="/teaser" class="footer-back">← Volver al Teaser</a>
-  </footer>
-
-  <script>
-    // ── CURSOR ──
-    const cur = document.getElementById('cur');
-    window.addEventListener('mousemove', (e) => {
-      cur.style.left = e.clientX + 'px';
-      cur.style.top  = e.clientY + 'px';
-    });
-
-    // Expand cursor on hoverable elements
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { cur.style.width='32px'; cur.style.height='32px'; cur.style.background='rgba(255,245,230,.15)'; });
-      el.addEventListener('mouseleave', () => { cur.style.width='16px'; cur.style.height='16px'; cur.style.background='transparent'; });
-    });
-
-    // ── SCROLL REVEAL ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          // stagger siblings
-          const siblings = [...entry.target.parentElement.children].filter(c => c.classList.contains('reveal') || c.classList.contains('reveal-left'));
-          const idx = siblings.indexOf(entry.target);
-          entry.target.style.transitionDelay = `${idx * 80}ms`;
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    <script>
+      // ── CURSOR ──
+      const cur = document.getElementById("cur");
+      window.addEventListener("mousemove", (e) => {
+        cur.style.left = e.clientX + "px";
+        cur.style.top = e.clientY + "px";
       });
-    }, { threshold: 0.12 });
 
-    document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
-
-    // ── PARALLAX SUBTLE on hero ──
-    const heroBg = document.querySelector('.hero-bg');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
-    }, { passive: true });
-
-    // ── POLAROID: HOVER = FAN (desktop), TAP = FAN (mobile) ──
-    const polStack = document.getElementById('pol-stack');
-    const pols = document.querySelectorAll('.pol');
-    const isTouchDevice = window.matchMedia('(hover: none)').matches;
-
-    if (!isTouchDevice) {
-      // Desktop: hover opens/closes
-      polStack.addEventListener('mouseenter', () => polStack.classList.add('fanned'));
-      polStack.addEventListener('mouseleave', () => {
-        polStack.classList.remove('fanned');
-        // Keep selected card on top but reset its lifted state
+      // Expand cursor on hoverable elements
+      document.querySelectorAll("a, button").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          cur.style.width = "32px";
+          cur.style.height = "32px";
+          cur.style.background = "rgba(255,245,230,.15)";
+        });
+        el.addEventListener("mouseleave", () => {
+          cur.style.width = "16px";
+          cur.style.height = "16px";
+          cur.style.background = "transparent";
+        });
       });
-    } else {
-      // Mobile: tap once to fan, IntersectionObserver auto-opens on scroll
-      let isFanned = false;
 
-      // AUTO-OPEN when polaroids scroll into view
-      const fanObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            polStack.classList.add('fanned');
-            isFanned = true;
-          } else {
-            polStack.classList.remove('fanned');
-            pols.forEach(p => p.classList.remove('pol-active'));
-            isFanned = false;
+      // ── SCROLL REVEAL ──
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              // stagger siblings
+              const siblings = [...entry.target.parentElement.children].filter(
+                (c) =>
+                  c.classList.contains("reveal") ||
+                  c.classList.contains("reveal-left"),
+              );
+              const idx = siblings.indexOf(entry.target);
+              entry.target.style.transitionDelay = `${idx * 80}ms`;
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".reveal, .reveal-left")
+        .forEach((el) => observer.observe(el));
+
+      // ── PARALLAX SUBTLE on hero ──
+      const heroBg = document.querySelector(".hero-bg");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
+        },
+        { passive: true },
+      );
+
+      // ── POLAROID: HOVER = FAN (desktop), TAP = FAN (mobile) ──
+      const polStack = document.getElementById("pol-stack");
+      const pols = document.querySelectorAll(".pol");
+      const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+      if (!isTouchDevice) {
+        // Desktop: hover opens/closes
+        polStack.addEventListener("mouseenter", () =>
+          polStack.classList.add("fanned"),
+        );
+        polStack.addEventListener("mouseleave", () => {
+          polStack.classList.remove("fanned");
+          // Keep selected card on top but reset its lifted state
+        });
+      } else {
+        // Mobile: tap once to fan, IntersectionObserver auto-opens on scroll
+        let isFanned = false;
+
+        // AUTO-OPEN when polaroids scroll into view
+        const fanObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                polStack.classList.add("fanned");
+                isFanned = true;
+              } else {
+                polStack.classList.remove("fanned");
+                pols.forEach((p) => p.classList.remove("pol-active"));
+                isFanned = false;
+              }
+            });
+          },
+          { threshold: 0.4 },
+        );
+        fanObserver.observe(polStack);
+
+        // Tap a card to bring it front while fanned
+        polStack.addEventListener("click", (e) => {
+          const clickedPol = e.target.closest(".pol");
+          if (isFanned && clickedPol) {
+            pols.forEach((p) => p.classList.remove("pol-active"));
+            clickedPol.classList.add("pol-active");
+            e.stopPropagation();
           }
         });
-      }, { threshold: 0.4 });
-      fanObserver.observe(polStack);
+      }
 
-      // Tap a card to bring it front while fanned
-      polStack.addEventListener('click', (e) => {
-        const clickedPol = e.target.closest('.pol');
-        if (isFanned && clickedPol) {
-          pols.forEach(p => p.classList.remove('pol-active'));
-          clickedPol.classList.add('pol-active');
+      // Click a card → bring it to front (works on both)
+      pols.forEach((pol) => {
+        pol.addEventListener("click", (e) => {
           e.stopPropagation();
-        }
+          pols.forEach((p) => p.classList.remove("pol-active"));
+          pol.classList.add("pol-active");
+        });
       });
-    }
-
-    // Click a card → bring it to front (works on both)
-    pols.forEach(pol => {
-      pol.addEventListener('click', (e) => {
-        e.stopPropagation();
-        pols.forEach(p => p.classList.remove('pol-active'));
-        pol.classList.add('pol-active');
-      });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

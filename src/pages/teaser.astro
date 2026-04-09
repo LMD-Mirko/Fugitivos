@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.png';
-import coverImage from '../assets/imagen portada (1).jpeg';
-import '../styles/teaser.css';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import coverImage from "../assets/imagen portada (1).jpeg";
+import "../styles/teaser.css";
 
 const holes = Array.from({ length: 12 });
 ---
@@ -16,7 +16,7 @@ const holes = Array.from({ length: 12 });
 
 		<!-- ── TEASER EXIT OVERLAY ── -->
 		<div class="t-exit-glitch" id="t-exit-glitch"></div>
-		<div class="t-exit-cream"  id="t-exit-cream"></div>
+		<div class="t-exit-cream" id="t-exit-cream"></div>
 
 		<!-- EXISTING FX -->
 		<div class="strobe-intro"></div>
@@ -28,18 +28,19 @@ const holes = Array.from({ length: 12 });
 
 		<!-- FILM REEL PERFORATIONS -->
 		<div class="film-reel-holes reel-left">
-			{holes.map(() => <div class="hole"></div>)}
+			{holes.map(() => <div class="hole" />)}
 		</div>
 		<div class="film-reel-holes reel-right">
-			{holes.map(() => <div class="hole"></div>)}
+			{holes.map(() => <div class="hole" />)}
 		</div>
 
 		<!-- VHS HUD -->
 		<div class="vhs-overlay">
 			<div class="vhs-top">
-				<span class="vhs-rec">● REC</span> <span id="vhs-clock">00:00:00:00</span>
+				<span class="vhs-rec">● REC</span>
+				<span id="vhs-clock">00:00:00:00</span>
 			</div>
-			<div class="vhs-bottom">SP <br/> AUTO</div>
+			<div class="vhs-bottom">SP <br /> AUTO</div>
 		</div>
 
 		<!-- UI -->
@@ -48,15 +49,21 @@ const holes = Array.from({ length: 12 });
 		<div class="liquid-bg">
 			<div class="stage-mist"></div>
 			<div class="debris-field">
-				<div class="debris" style="left:5%;  animation-delay: 0s;"></div>
-				<div class="debris" style="left:25%; animation-delay: -7s;"></div>
-				<div class="debris" style="left:45%; animation-delay: -14s;"></div>
-				<div class="debris" style="left:65%; animation-delay: -3s;"></div>
-				<div class="debris" style="left:85%; animation-delay: -10s;"></div>
+				<div class="debris" style="left:5%;  animation-delay: 0s;">
+				</div>
+				<div class="debris" style="left:25%; animation-delay: -7s;">
+				</div>
+				<div class="debris" style="left:45%; animation-delay: -14s;">
+				</div>
+				<div class="debris" style="left:65%; animation-delay: -3s;">
+				</div>
+				<div class="debris" style="left:85%; animation-delay: -10s;">
+				</div>
 			</div>
 			<div class="marquee-container">
 				<div class="marquee-text">
-					FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . 
+					FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . FUGITIVOS .
+					HASTA MIS MIEDOS . MAYO 12 . 2026 .
 				</div>
 			</div>
 			<div class="film-grain"></div>
@@ -70,20 +77,82 @@ const holes = Array.from({ length: 12 });
 			<section class="center-piece t-reveal-center">
 				<div class="cover-container" id="cover-card">
 					<div class="card-face card-front">
-						<div class="cover-inner" style="padding: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;">
-							<Image src={coverImage} alt="Portada Fugitivos 2026" style="width: 100%; height: 100%; object-fit: cover;" />
+						<div
+							class="cover-inner"
+							style="padding: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;"
+						>
+							<Image
+								src={coverImage}
+								alt="Portada Fugitivos 2026"
+								style="width: 100%; height: 100%; object-fit: cover;"
+							/>
 						</div>
 					</div>
 					<div class="card-face card-back">
 						<div class="social-links">
-							<a href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr" class="s-link">
-								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M9 16h6"></path><path d="M10 8h4"></path></svg> Spotify</span>
+							<a
+								href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
+								class="s-link"
+							>
+								<span
+									><svg
+										viewBox="0 0 24 24"
+										width="20"
+										height="20"
+										stroke="currentColor"
+										stroke-width="2"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										><circle cx="12" cy="12" r="10"
+										></circle><path d="M8 12h8"></path><path
+											d="M9 16h6"></path><path d="M10 8h4"
+										></path></svg
+									> Spotify</span
+								>
 							</a>
-							<a href="https://youtu.be/IZmf1BATdL8?si=9_3y4HTu2xaT5qCJ" class="s-link">
-								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M10 10l5 3-5 3v-6z"></path></svg> YouTube</span>
+							<a
+								href="https://youtu.be/IZmf1BATdL8?si=9_3y4HTu2xaT5qCJ"
+								class="s-link"
+							>
+								<span
+									><svg
+										viewBox="0 0 24 24"
+										width="20"
+										height="20"
+										stroke="currentColor"
+										stroke-width="2"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										><rect
+											x="2"
+											y="4"
+											width="20"
+											height="16"
+											rx="2"
+											ry="2"></rect><path
+											d="M10 10l5 3-5 3v-6z"></path></svg
+									> YouTube</span
+								>
 							</a>
 							<a href="#" class="s-link">
-								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg> Apple Music</span>
+								<span
+									><svg
+										viewBox="0 0 24 24"
+										width="20"
+										height="20"
+										stroke="currentColor"
+										stroke-width="2"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										><path d="M9 18V5l12-2v13"
+										></path><circle cx="6" cy="18" r="3"
+										></circle><circle cx="18" cy="16" r="3"
+										></circle></svg
+									> Apple Music</span
+								>
 							</a>
 						</div>
 					</div>
@@ -100,11 +169,70 @@ const holes = Array.from({ length: 12 });
 					<span class="avail-dot"></span>
 					ESCÚCHALA AHORA
 				</div>
-				<a href="/info" class="btn-cta" id="info-btn">VER INFO DEL GRUPO</a>
+				<a href="/info" class="btn-cta" id="info-btn"
+					>VER INFO DEL GRUPO</a
+				>
 			</footer>
 		</div>
 
+		<!-- COMPACT SPOTIFY AUTOPLAY (BOTTOM LEFT) -->
+		<div
+			class="t-reveal-footer"
+			style="position: fixed; bottom: clamp(1rem, 3vh, 2rem); left: clamp(1rem, 3vw, 2rem); z-index: 1000; width: 340px; max-width: calc(100vw - 2rem); opacity: 0.8; transition: opacity 0.3s; transform: scale(0.9); transform-origin: bottom left; filter: grayscale(100%) contrast(120%);"
+			onmouseover="this.style.opacity='1'; this.style.filter='grayscale(0)'"
+			onmouseout="this.style.opacity='0.8'; this.style.filter='grayscale(100%) contrast(120%)'"
+		>
+			<iframe
+				style="border-radius:12px; background: transparent;"
+				src="https://open.spotify.com/embed/album/72P0pMX79PKYfLrBkKAYIr?utm_source=generator&theme=0&autoplay=1"
+				width="100%"
+				height="80"
+				frameBorder="0"
+				scrolling="no"
+				allowfullscreen=""
+				allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+				loading="lazy"
+			>
+			</iframe>
+		</div>
+
 		<div id="mouse-blur"></div>
+
+		<!-- TRUCO PARA AUTOPLAY: YouTube oculto con control de volumen -->
+		<div
+			style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; z-index: -999;"
+		>
+			<div id="yt-player"></div>
+		</div>
+
+		<script is:inline>
+			var ytScript = document.createElement("script");
+			ytScript.src = "https://www.youtube.com/iframe_api";
+			var firstScript = document.getElementsByTagName("script")[0];
+			firstScript.parentNode.insertBefore(ytScript, firstScript);
+
+			var ytPlayer;
+			function onYouTubeIframeAPIReady() {
+				ytPlayer = new YT.Player("yt-player", {
+					height: "10",
+					width: "10",
+					videoId: "IZmf1BATdL8",
+					playerVars: {
+						autoplay: 1,
+						loop: 1,
+						controls: 0,
+						playlist: "IZmf1BATdL8",
+					},
+					events: {
+						onReady: function (event) {
+							// >>> AQUÍ CONTROLA EL VOLUMEN (0 a 100) <<<
+							event.target.setVolume(20);
+							event.target.playVideo();
+						},
+					},
+				});
+			}
+		</script>
 	</main>
 </Layout>
 
@@ -115,14 +243,15 @@ const holes = Array.from({ length: 12 });
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		font-size: clamp(.65rem, 1.2vh, .9rem);
+		font-size: clamp(0.65rem, 1.2vh, 0.9rem);
 		letter-spacing: 6px;
 		color: #fff5e6;
 		text-transform: uppercase;
 		opacity: 0.75;
 	}
 	.avail-dot {
-		width: 8px; height: 8px;
+		width: 8px;
+		height: 8px;
 		border-radius: 50%;
 		background: #fff5e6;
 		box-shadow: 0 0 8px #fff5e6;
@@ -130,166 +259,278 @@ const holes = Array.from({ length: 12 });
 		flex-shrink: 0;
 	}
 	@keyframes pulse-dot {
-		0%, 100% { opacity: 1; transform: scale(1); }
-		50%       { opacity: 0.3; transform: scale(0.6); }
+		0%,
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0.3;
+			transform: scale(0.6);
+		}
 	}
 
 	/* ENTRY: projector flicker */
 	.t-entry-flash {
-		position: fixed; inset: 0;
+		position: fixed;
+		inset: 0;
 		background: #fff5e6;
-		z-index: 9998; pointer-events: none;
+		z-index: 9998;
+		pointer-events: none;
 		animation: tEntryFlicker 2s ease-out forwards;
 	}
 	@keyframes tEntryFlicker {
-		0%  { opacity: 1; }
-		6%  { opacity: 0; }
-		10% { opacity: 0.85; }
-		14% { opacity: 0; }
-		18% { opacity: 0.6; }
-		22% { opacity: 0; }
-		28% { opacity: 0.35; }
-		34% { opacity: 0; }
-		100%{ opacity: 0; }
+		0% {
+			opacity: 1;
+		}
+		6% {
+			opacity: 0;
+		}
+		10% {
+			opacity: 0.85;
+		}
+		14% {
+			opacity: 0;
+		}
+		18% {
+			opacity: 0.6;
+		}
+		22% {
+			opacity: 0;
+		}
+		28% {
+			opacity: 0.35;
+		}
+		34% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 
 	/* ENTRY: horizontal scanlines sweep down */
 	.t-scanline-in {
-		position: fixed; inset: 0;
+		position: fixed;
+		inset: 0;
 		background: repeating-linear-gradient(
 			to bottom,
-			#000 0px, #000 3px,
-			transparent 3px, transparent 7px
+			#000 0px,
+			#000 3px,
+			transparent 3px,
+			transparent 7px
 		);
-		z-index: 9997; pointer-events: none;
-		animation: tScanDown 1.6s 0.3s cubic-bezier(0.77,0,0.18,1) forwards;
+		z-index: 9997;
+		pointer-events: none;
+		animation: tScanDown 1.6s 0.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
 	}
 	@keyframes tScanDown {
-		0%   { transform: translateY(-100%); opacity: 1; }
-		60%  { transform: translateY(0);    opacity: 1; }
-		100% { transform: translateY(110%); opacity: 0; }
+		0% {
+			transform: translateY(-100%);
+			opacity: 1;
+		}
+		60% {
+			transform: translateY(0);
+			opacity: 1;
+		}
+		100% {
+			transform: translateY(110%);
+			opacity: 0;
+		}
 	}
 
 	/* ENTRY: content slams in */
 	.t-reveal-logo {
-		animation: slamDown 0.55s 1.4s cubic-bezier(0.22,1,0.36,1) both;
+		animation: slamDown 0.55s 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 	@keyframes slamDown {
-		0%   { opacity: 0; transform: translateY(-10vh) scale(1.1); filter: blur(10px); }
-		70%  { transform: translateY(1vh) scale(0.98); }
-		100% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+		0% {
+			opacity: 0;
+			transform: translateY(-10vh) scale(1.1);
+			filter: blur(10px);
+		}
+		70% {
+			transform: translateY(1vh) scale(0.98);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			filter: none;
+		}
 	}
 	.t-reveal-center {
-		animation: slamUp 0.55s 1.6s cubic-bezier(0.22,1,0.36,1) both;
+		animation: slamUp 0.55s 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 	@keyframes slamUp {
-		0%   { opacity: 0; transform: translateY(10vh) scale(1.05); filter: blur(8px); }
-		70%  { transform: translateY(-1vh); }
-		100% { opacity: 1; transform: translateY(0); filter: none; }
+		0% {
+			opacity: 0;
+			transform: translateY(10vh) scale(1.05);
+			filter: blur(8px);
+		}
+		70% {
+			transform: translateY(-1vh);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+			filter: none;
+		}
 	}
 	.t-reveal-footer {
-		animation: slamUp 0.5s 1.9s cubic-bezier(0.22,1,0.36,1) both;
+		animation: slamUp 0.5s 1.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 	}
 
 	/* EXIT: vertical glitch rip */
 	.t-exit-glitch {
-		position: fixed; inset: 0; z-index: 9998;
-		pointer-events: none; opacity: 0; background: #000;
+		position: fixed;
+		inset: 0;
+		z-index: 9998;
+		pointer-events: none;
+		opacity: 0;
+		background: #000;
 	}
 	.t-exit-glitch.fire {
 		animation: tGlitchRip 0.6s ease-in forwards;
 	}
 	@keyframes tGlitchRip {
-		0%  { opacity: 0; }
-		10% { opacity: 1; clip-path: inset(0 0 90% 0); filter: hue-rotate(90deg); transform: skewX(5deg); }
-		25% { clip-path: inset(5% 0 55% 10%); filter: hue-rotate(-90deg); transform: skewX(-3deg); }
-		40% { clip-path: inset(15% 5% 20% 0); filter: hue-rotate(45deg); transform: skewX(2deg); }
-		60% { clip-path: inset(0 0 0 0); filter: hue-rotate(0); transform: skewX(0); }
-		80% { opacity: 1; background: #000; }
-		100%{ opacity: 1; background: #fff5e6; }
+		0% {
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+			clip-path: inset(0 0 90% 0);
+			filter: hue-rotate(90deg);
+			transform: skewX(5deg);
+		}
+		25% {
+			clip-path: inset(5% 0 55% 10%);
+			filter: hue-rotate(-90deg);
+			transform: skewX(-3deg);
+		}
+		40% {
+			clip-path: inset(15% 5% 20% 0);
+			filter: hue-rotate(45deg);
+			transform: skewX(2deg);
+		}
+		60% {
+			clip-path: inset(0 0 0 0);
+			filter: hue-rotate(0);
+			transform: skewX(0);
+		}
+		80% {
+			opacity: 1;
+			background: #000;
+		}
+		100% {
+			opacity: 1;
+			background: #fff5e6;
+		}
 	}
 	.t-exit-cream {
-		position: fixed; inset: 0; background: #fff5e6;
-		opacity: 0; pointer-events: none; z-index: 9999;
+		position: fixed;
+		inset: 0;
+		background: #fff5e6;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 9999;
 	}
-	.t-exit-cream.fire { animation: tCreamFlash 0.4s ease-out forwards; }
-	@keyframes tCreamFlash { 0% { opacity: 1; } 100% { opacity: 0;} }
+	.t-exit-cream.fire {
+		animation: tCreamFlash 0.4s ease-out forwards;
+	}
+	@keyframes tCreamFlash {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
 </style>
 
 <script>
 	// ── GUARD: always show splash on refresh ──
-	(function() {
-		const ts = sessionStorage.getItem('splashTs');
-		const fresh = ts && (Date.now() - parseInt(ts)) < 5000;
+	(function () {
+		const ts = sessionStorage.getItem("splashTs");
+		const fresh = ts && Date.now() - parseInt(ts) < 5000;
 		if (!fresh) {
-			window.location.replace('/splash');
+			window.location.replace("/splash");
 		}
 	})();
 
-
-
 	// VHS CLOCK
-	const vhsClock = document.getElementById('vhs-clock');
+	const vhsClock = document.getElementById("vhs-clock");
 	setInterval(() => {
 		const n = new Date();
-		vhsClock.innerText = `${n.toTimeString().split(' ')[0]}:${String(n.getMilliseconds()).padStart(3,'0').slice(0,2)}`;
+		vhsClock.innerText = `${n.toTimeString().split(" ")[0]}:${String(n.getMilliseconds()).padStart(3, "0").slice(0, 2)}`;
 	}, 100);
 
 	// RANDOM FLASHES
-	const flash = document.getElementById('flash-lay');
+	const flash = document.getElementById("flash-lay");
 	setInterval(() => {
-		if (Math.random() > 0.985) { flash.style.opacity = '0.4'; setTimeout(() => flash.style.opacity = '0', 100); }
+		if (Math.random() > 0.985) {
+			flash.style.opacity = "0.4";
+			setTimeout(() => (flash.style.opacity = "0"), 100);
+		}
 	}, 200);
 
 	// CURSOR + LENS + TILT
-	const blurLens    = document.getElementById('mouse-blur');
-	const customCursor= document.getElementById('custom-cursor');
-	const coverCard   = document.getElementById('cover-card');
-	const glitchFlash = document.getElementById('glitch-lay');
+	const blurLens = document.getElementById("mouse-blur");
+	const customCursor = document.getElementById("custom-cursor");
+	const coverCard = document.getElementById("cover-card");
+	const glitchFlash = document.getElementById("glitch-lay");
 
-	window.addEventListener('mousemove', (e) => {
+	window.addEventListener("mousemove", (e) => {
 		const { clientX: x, clientY: y } = e;
-		if (blurLens)     { blurLens.style.left = x+'px'; blurLens.style.top = y+'px'; }
-		if (customCursor) { customCursor.style.left = x+'px'; customCursor.style.top = y+'px'; }
-		if (coverCard && !coverCard.classList.contains('flipped')) {
-			const rx = (x - window.innerWidth/2)  / (window.innerWidth/2);
-			const ry = (y - window.innerHeight/2) / (window.innerHeight/2);
-			coverCard.style.transform = `perspective(2000px) rotateY(${rx*12}deg) rotateX(${ry*-12}deg)`;
+		if (blurLens) {
+			blurLens.style.left = x + "px";
+			blurLens.style.top = y + "px";
+		}
+		if (customCursor) {
+			customCursor.style.left = x + "px";
+			customCursor.style.top = y + "px";
+		}
+		if (coverCard && !coverCard.classList.contains("flipped")) {
+			const rx = (x - window.innerWidth / 2) / (window.innerWidth / 2);
+			const ry = (y - window.innerHeight / 2) / (window.innerHeight / 2);
+			coverCard.style.transform = `perspective(2000px) rotateY(${rx * 12}deg) rotateX(${ry * -12}deg)`;
 		}
 	});
 
 	// CARD FLIP + MINI-GLITCH
 	if (coverCard) {
-		coverCard.addEventListener('click', () => {
+		coverCard.addEventListener("click", () => {
 			if (glitchFlash) {
-				glitchFlash.classList.add('trigger');
-				setTimeout(() => glitchFlash.classList.remove('trigger'), 200);
+				glitchFlash.classList.add("trigger");
+				setTimeout(() => glitchFlash.classList.remove("trigger"), 200);
 			}
-			coverCard.classList.toggle('flipped');
-			if (coverCard.classList.contains('flipped')) coverCard.style.transform = 'rotateY(180deg)';
+			coverCard.classList.toggle("flipped");
+			if (coverCard.classList.contains("flipped"))
+				coverCard.style.transform = "rotateY(180deg)";
 		});
 
-		coverCard.addEventListener('mouseenter', () => {
-			if (blurLens) blurLens.style.opacity = '0';
+		coverCard.addEventListener("mouseenter", () => {
+			if (blurLens) blurLens.style.opacity = "0";
 		});
-		
-		coverCard.addEventListener('mouseleave', () => {
-			if (blurLens) blurLens.style.opacity = '1';
+
+		coverCard.addEventListener("mouseleave", () => {
+			if (blurLens) blurLens.style.opacity = "1";
 		});
 	}
 
 	// EXIT on info button
-	const infoBtn = document.getElementById('info-btn');
+	const infoBtn = document.getElementById("info-btn");
 	if (infoBtn) {
-		infoBtn.addEventListener('click', (e) => {
+		infoBtn.addEventListener("click", (e) => {
 			e.preventDefault();
-			const href = infoBtn.getAttribute('href');
-			document.getElementById('t-exit-glitch').classList.add('fire');
+			const href = infoBtn.getAttribute("href");
+			document.getElementById("t-exit-glitch").classList.add("fire");
 			setTimeout(() => {
-				const c = document.getElementById('t-exit-cream');
-				c.style.opacity = '1';
-				c.classList.add('fire');
-				setTimeout(() => { window.location.href = href; }, 380);
+				const c = document.getElementById("t-exit-cream");
+				c.style.opacity = "1";
+				c.classList.add("fire");
+				setTimeout(() => {
+					window.location.href = href;
+				}, 380);
 			}, 550);
 		});
 	}

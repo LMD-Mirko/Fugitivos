@@ -1,5 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import coverImage from '../assets/imagen portada (1).jpeg';
 import logo from '../assets/logo.png';
+import img1 from '../assets/imagenes/530656272_18083226982870711_8446053491263136157_n.jpg';
+import img2 from '../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.jpg';
+import img3 from '../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.jpg';
+import img4 from '../assets/imagenes/DSC_1536.JPG.jpeg';
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -221,7 +227,6 @@ import logo from '../assets/logo.png';
       width: 100%; height: 80%;
       object-fit: cover;
       display: block;
-      filter: grayscale(1) contrast(1.1);
     }
 
     /* CSS-only photo placeholders */
@@ -689,19 +694,19 @@ import logo from '../assets/logo.png';
     <div class="hero-polaroids">
       <div class="polaroid-stack" id="pol-stack">
         <div class="pol">
-          <div class="pol-photo ph1"></div>
+          <Image src={img1} alt="Lima" class="pol-photo" />
           <p class="pol-caption">Lima, 2025</p>
         </div>
         <div class="pol">
-          <div class="pol-photo ph2"></div>
+          <Image src={img2} alt="Ensayo" class="pol-photo" />
           <p class="pol-caption">Ensayo</p>
         </div>
         <div class="pol">
-          <div class="pol-photo ph3"></div>
+          <Image src={img3} alt="Fugitivos" class="pol-photo" />
           <p class="pol-caption">Fugitivos</p>
         </div>
         <div class="pol">
-          <div class="pol-photo ph4"></div>
+          <Image src={img4} alt="Rock" class="pol-photo" />
           <p class="pol-caption">Rock ·  2026</p>
         </div>
       </div>
@@ -727,7 +732,7 @@ import logo from '../assets/logo.png';
   <section id="links">
     <p class="links-header reveal">Síguenos</p>
 
-    <a href="https://instagram.com" target="_blank" rel="noopener" class="social-strip reveal">
+    <a href="https://www.instagram.com/oficialfugitivos_/" target="_blank" rel="noopener" class="social-strip reveal">
       <div class="strip-left">
         <span class="strip-num">01</span>
         <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -743,7 +748,7 @@ import logo from '../assets/logo.png';
       <span class="strip-arrow">→</span>
     </a>
 
-    <a href="https://facebook.com" target="_blank" rel="noopener" class="social-strip reveal">
+    <a href="https://www.facebook.com/people/Fugitivos/61574167808925/?rdid=r6VssdoNaMVZQXHO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16KapV9g9g%2F" target="_blank" rel="noopener" class="social-strip reveal">
       <div class="strip-left">
         <span class="strip-num">02</span>
         <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -757,7 +762,7 @@ import logo from '../assets/logo.png';
       <span class="strip-arrow">→</span>
     </a>
 
-    <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-strip reveal">
+    <a href="https://www.tiktok.com/@fugitivos104?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-strip reveal">
       <div class="strip-left">
         <span class="strip-num">03</span>
         <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -771,7 +776,7 @@ import logo from '../assets/logo.png';
       <span class="strip-arrow">→</span>
     </a>
 
-    <a href="https://youtube.com" target="_blank" rel="noopener" class="social-strip reveal">
+    <a href="https://www.youtube.com/@fugitivosband" target="_blank" rel="noopener" class="social-strip reveal">
       <div class="strip-left">
         <span class="strip-num">04</span>
         <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -786,7 +791,7 @@ import logo from '../assets/logo.png';
       <span class="strip-arrow">→</span>
     </a>
 
-    <a href="https://open.spotify.com" target="_blank" rel="noopener" class="social-strip reveal">
+    <a href="https://open.spotify.com/intl-es/artist/7LT1VRuqPekVJnMKwkzUyn?nd=1&dlsi=00bb196097c5421a" target="_blank" rel="noopener" class="social-strip reveal">
       <div class="strip-left">
         <span class="strip-num">05</span>
         <svg class="strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -854,7 +859,9 @@ import logo from '../assets/logo.png';
   <!-- ══ § 4 SINGLE ══ -->
   <section id="single">
     <div class="single-grid">
-      <div class="single-cover reveal"></div>
+      <div class="single-cover reveal">
+        <Image src={coverImage} alt="Portada Hasta Mis Miedos" style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;" />
+      </div>
 
       <div class="single-info">
         <p class="single-eyebrow reveal">Sencillo</p>
@@ -864,11 +871,11 @@ import logo from '../assets/logo.png';
         <p class="single-date reveal"> Disponible · 2026</p>
 
         <div class="single-ctas">
-          <a href="#" class="single-cta reveal">
+          <a href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr" class="single-cta reveal">
             <span>Pre-Guardar en Spotify</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#" class="single-cta reveal">
+          <a href="https://youtu.be/IZmf1BATdL8?si=9LzPFHyqj2Tip20v" class="single-cta reveal">
             <span>Ver en YouTube</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>

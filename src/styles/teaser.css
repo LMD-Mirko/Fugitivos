@@ -209,6 +209,7 @@ html, body {
   width: min(35vh, 80vw);
   height: min(35vh, 80vw);
   position: relative;
+  z-index: 250;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -436,6 +437,7 @@ html, body {
   filter: none;
   opacity: 1;
   box-shadow: 0 0 5vh rgba(255,245,230,0.1);
+  transition: opacity 0.3s ease;
 }
 
 .main-logo {

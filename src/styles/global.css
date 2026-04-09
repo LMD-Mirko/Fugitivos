@@ -1,0 +1,110 @@
+/* Design Tokens - Fugitivos Branding */
+:root {
+  /* Colors */
+  --color-bg: #080808;
+  --color-bg-alt: #121212;
+  --color-primary: #b30000; /* Red Fugitivo */
+  --color-primary-hover: #ff0000;
+  --color-text: #ffffff;
+  --color-text-muted: #a1a1a1;
+  --color-accent: #8e8e8e; /* Silver/Metallic */
+  
+  /* Fonts */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Special Elite', cursive;
+
+  /* Spacing & Utilities */
+  --container-max-width: 1200px;
+  --section-padding: 100px 0;
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Layout Units */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(to right, var(--color-text), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rock-shadow {
+  text-shadow: 4px 4px 0px rgba(179, 0, 0, 0.3);
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}

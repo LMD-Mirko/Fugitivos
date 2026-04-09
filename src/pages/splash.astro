@@ -1,0 +1,302 @@
+---
+import logo from '../assets/logo.png';
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fugitivos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    :root { --cream: #fff5e6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; color: var(--cream); font-family: 'Oswald', sans-serif; overflow: hidden; cursor: none; }
+
+    /* ─── PROJECTOR FLASH SEQUENCE (ENTRY) ─── */
+    #projector-flash {
+      position: fixed; inset: 0; background: var(--cream);
+      z-index: 9999; pointer-events: none;
+      animation: projectorBoot 1.8s ease-out forwards;
+    }
+    @keyframes projectorBoot {
+      0%   { opacity: 1; }
+      8%   { opacity: 0; }
+      12%  { opacity: 0.9; }
+      16%  { opacity: 0; }
+      20%  { opacity: 0.5; }
+      24%  { opacity: 0; }
+      28%  { opacity: 0.8; }
+      32%  { opacity: 0; }
+      36%  { opacity: 0.3; }
+      40%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* ─── SCANLINE WIPE (ENTRY REVEAL) ─── */
+    #scanline-wipe {
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        #000 0px, #000 4px,
+        transparent 4px, transparent 8px
+      );
+      z-index: 8000; pointer-events: none;
+      animation: scanWipe 1.4s 0.5s ease-in forwards;
+      opacity: 1;
+    }
+    @keyframes scanWipe {
+      0%   { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(110%); }
+    }
+
+    /* ─── CHROMATIC ABERRATION LAYERS ─── */
+    .logo-r, .logo-b {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ─── MAIN LAYOUT ─── */
+    #splash {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6vh;
+      opacity: 0;
+      animation: splashIn 0.4s 1.6s ease-out forwards;
+    }
+    @keyframes splashIn {
+      0%   { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* ─── LOGO (BIG, BRUTAL) ─── */
+    .logo-wrap {
+      position: relative;
+      animation: logoSlam 0.5s 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes logoSlam {
+      0%   { transform: scale(2.5) translateY(-8vh); filter: blur(20px) brightness(5); opacity: 0; }
+      60%  { transform: scale(0.96) translateY(1vh); filter: blur(0) brightness(1.8) sepia(0.4); opacity: 1; }
+      80%  { transform: scale(1.02); }
+      100% { transform: scale(1); filter: grayscale(1) brightness(1.6) sepia(0.35); }
+    }
+
+    /* Chromatic aberration on logo slam */
+    .logo-wrap::before, .logo-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: inherit;
+      pointer-events: none;
+      animation: chromaHit 0.5s 1.6s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes chromaHit {
+      0%  { opacity: 0; }
+      20% { opacity: 0.5; transform: translateX(-6px); filter: hue-rotate(180deg); }
+      40% { opacity: 0.3; transform: translateX(6px); filter: hue-rotate(-180deg); }
+      100%{ opacity: 0; transform: translateX(0); }
+    }
+
+    .logo-wrap img {
+      height: clamp(160px, 32vh, 380px);
+      width: auto;
+      display: block;
+      animation: logoSettle 0.4s 1.6s ease-out both;
+    }
+    @keyframes logoSettle {
+      0%   { filter: blur(20px) brightness(6) sepia(0); }
+      100% { filter: grayscale(1) brightness(1.6) sepia(0.35); }
+    }
+
+    /* ─── OSCILLOSCOPE ─── */
+    #oscilloscope {
+      width: min(72vw, 580px);
+      height: clamp(60px, 11vh, 100px);
+      animation: elemIn 0.4s 1.9s ease-out both;
+    }
+    canvas { width: 100%; height: 100%; display: block; }
+
+    /* ─── EQ BARS ─── */
+    .eq-wrap {
+      display: flex; align-items: flex-end;
+      gap: clamp(2px, 0.5vw, 5px);
+      height: clamp(40px, 8vh, 65px);
+      opacity: 0.65;
+      animation: elemIn 0.4s 2s ease-out both;
+    }
+    .eq-bar {
+      width: clamp(3px, 0.7vw, 8px);
+      background: var(--cream);
+      border-radius: 2px 2px 0 0;
+      animation: eqPulse var(--dur, 0.5s) infinite alternate ease-in-out;
+    }
+    @keyframes eqPulse {
+      from { height: 6%;  opacity: 0.2; }
+      to   { height: var(--h, 80%); opacity: 1; }
+    }
+
+    /* ─── PROGRESS ─── */
+    .progress-wrap {
+      width: min(72vw, 580px);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.6vh;
+      animation: elemIn 0.4s 2.1s ease-out both;
+    }
+    @keyframes elemIn {
+      0%   { opacity: 0; transform: translateY(2vh); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .progress-track {
+      width: 100%; height: 1px;
+      background: rgba(255,245,230,0.12); overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 0%;
+      background: var(--cream);
+      box-shadow: 0 0 12px var(--cream);
+      transition: width 0.08s linear;
+    }
+    .status-label {
+      font-size: clamp(0.6rem, 1.1vh, 0.85rem);
+      letter-spacing: 6px; opacity: 0.35; text-transform: uppercase;
+    }
+
+    /* ─── EXIT: GLITCH TEAR ─── */
+    #glitch-exit {
+      position: fixed; inset: 0; z-index: 9998;
+      pointer-events: none; opacity: 0;
+      background: #000;
+    }
+    #glitch-exit.fire {
+      animation: glitchTear 0.55s ease-in forwards;
+    }
+    @keyframes glitchTear {
+      0%  { opacity: 0; clip-path: inset(0 0 100% 0); }
+      15% { opacity: 1; clip-path: inset(0 0 80% 0); filter: hue-rotate(90deg); }
+      30% { clip-path: inset(10% 0 60% 0) inset(70% 0 0% 0); filter: hue-rotate(-90deg); transform: skewX(3deg); }
+      50% { clip-path: inset(0 0 0 0); filter: hue-rotate(180deg); transform: skewX(-2deg); }
+      70% { clip-path: inset(0 0 0 0); filter: none; transform: skewX(0); }
+      100%{ opacity: 1; clip-path: inset(0 0 0 0); background: var(--cream); }
+    }
+
+    #flash-exit {
+      position: fixed; inset: 0; background: var(--cream);
+      opacity: 0; pointer-events: none; z-index: 9999;
+    }
+    #flash-exit.fire { animation: burn 0.4s ease-out forwards; }
+    @keyframes burn { 0% { opacity: 1; } 100% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <!-- ENTRY EFFECTS -->
+  <div id="projector-flash"></div>
+  <div id="scanline-wipe"></div>
+
+  <!-- EXIT EFFECTS -->
+  <div id="glitch-exit"></div>
+  <div id="flash-exit"></div>
+
+  <div id="splash">
+    <div class="logo-wrap">
+      <img src={logo.src} alt="Fugitivos" />
+    </div>
+
+    <div id="oscilloscope">
+      <canvas id="wave-canvas"></canvas>
+    </div>
+
+    <div class="eq-wrap" id="eq-bars"></div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill"></div>
+      </div>
+      <div class="status-label" id="status-label">INICIALIZANDO</div>
+    </div>
+  </div>
+
+  <script>
+    // ── EQ BARS ──
+    const eq = document.getElementById('eq-bars');
+    for (let i = 0; i < 52; i++) {
+      const b = document.createElement('div');
+      b.className = 'eq-bar';
+      b.style.setProperty('--h',   (15 + Math.random() * 85).toFixed(0) + '%');
+      b.style.setProperty('--dur', (0.22 + Math.random() * 0.65).toFixed(2) + 's');
+      b.style.animationDelay = (Math.random() * 0.4).toFixed(2) + 's';
+      eq.appendChild(b);
+    }
+    setInterval(() => {
+      document.querySelectorAll('.eq-bar').forEach(b =>
+        b.style.setProperty('--h', (8 + Math.random() * 92).toFixed(0) + '%')
+      );
+    }, 240);
+
+    // ── OSCILLOSCOPE ──
+    const canvas = document.getElementById('wave-canvas');
+    const ctx = canvas.getContext('2d');
+    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+    resize(); window.addEventListener('resize', resize);
+
+    let phase = 0, stab = 0;
+    (function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width, h = canvas.height, mid = h / 2, amp = mid * 0.82;
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(255,245,230,${0.4 + stab * 0.5})`;
+      ctx.lineWidth = 1.5;
+      ctx.shadowBlur = 5 + stab * 18;
+      ctx.shadowColor = 'rgba(255,240,210,0.7)';
+      for (let x = 0; x < w; x++) {
+        const t = (x / w) * Math.PI * 6;
+        let y = Math.sin(t + phase) * amp * (1 - stab * 0.68);
+        if (stab < 1) {
+          y += Math.sin(t * 3.7 + phase * 2) * amp * 0.28 * (1 - stab);
+          y += Math.sin(t * 8 - phase) * amp * 0.12 * (1 - stab);
+          y += (Math.random() - 0.5) * 10 * (1 - stab);
+        }
+        x === 0 ? ctx.moveTo(x, mid + y) : ctx.lineTo(x, mid + y);
+      }
+      ctx.stroke(); ctx.shadowBlur = 0;
+      phase += 0.07 + stab * 0.05;
+      requestAnimationFrame(draw);
+    })();
+
+    // ── PROGRESS ──
+    const fill  = document.getElementById('prog-fill');
+    const label = document.getElementById('status-label');
+    const steps = ['INICIALIZANDO', 'CARGANDO', 'CALIBRANDO', 'LISTO'];
+    let pct = 0;
+
+    // Start progress AFTER entry animations settle (~2.5s)
+    setTimeout(() => {
+      const t = setInterval(() => {
+        pct  = Math.min(100, pct + 1 + Math.random() * 2.5);
+        stab = pct / 100;
+        fill.style.width = pct + '%';
+        label.innerText  = steps[Math.floor((pct / 100) * (steps.length - 1))];
+        if (pct >= 100) { clearInterval(t); setTimeout(launchExit, 500); }
+      }, 50);
+    }, 2400);
+
+    // ── BRUTAL EXIT ──
+    function launchExit() {
+      // Mark that splash ran right now
+      sessionStorage.setItem('splashTs', Date.now());
+      document.getElementById('glitch-exit').classList.add('fire');
+      setTimeout(() => {
+        const f = document.getElementById('flash-exit');
+        f.style.opacity = '1';
+        f.classList.add('fire');
+        setTimeout(() => { window.location.href = '/teaser'; }, 400);
+      }, 500);
+    }
+  </script>
+</body>
+</html>

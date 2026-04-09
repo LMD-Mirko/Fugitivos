@@ -1,0 +1,289 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import '../styles/teaser.css';
+
+const holes = Array.from({ length: 12 });
+---
+
+<Layout>
+	<main>
+		<!-- ── TEASER ENTRY: PROJECTOR FLICKER + SCANLINE REVEAL ── -->
+		<div class="t-entry-flash" id="t-entry-flash"></div>
+		<div class="t-scanline-in" id="t-scanline-in"></div>
+
+		<!-- ── TEASER EXIT OVERLAY ── -->
+		<div class="t-exit-glitch" id="t-exit-glitch"></div>
+		<div class="t-exit-cream"  id="t-exit-cream"></div>
+
+		<!-- EXISTING FX -->
+		<div class="strobe-intro"></div>
+		<div class="camera-flash" id="flash-lay"></div>
+		<div class="glitch-flash" id="glitch-lay"></div>
+
+		<!-- CUSTOM CURSOR -->
+		<div id="custom-cursor"></div>
+
+		<!-- FILM REEL PERFORATIONS -->
+		<div class="film-reel-holes reel-left">
+			{holes.map(() => <div class="hole"></div>)}
+		</div>
+		<div class="film-reel-holes reel-right">
+			{holes.map(() => <div class="hole"></div>)}
+		</div>
+
+		<!-- VHS HUD -->
+		<div class="vhs-overlay">
+			<div class="vhs-top">
+				<span class="vhs-rec">● REC</span> <span id="vhs-clock">00:00:00:00</span>
+			</div>
+			<div class="vhs-bottom">SP <br/> AUTO</div>
+		</div>
+
+		<!-- UI -->
+		<button class="listen-btn"><i></i> OÍR TEASER</button>
+
+		<div class="liquid-bg">
+			<div class="stage-mist"></div>
+			<div class="debris-field">
+				<div class="debris" style="left:5%;  animation-delay: 0s;"></div>
+				<div class="debris" style="left:25%; animation-delay: -7s;"></div>
+				<div class="debris" style="left:45%; animation-delay: -14s;"></div>
+				<div class="debris" style="left:65%; animation-delay: -3s;"></div>
+				<div class="debris" style="left:85%; animation-delay: -10s;"></div>
+			</div>
+			<div class="marquee-container">
+				<div class="marquee-text">
+					FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . 
+				</div>
+			</div>
+			<div class="film-grain"></div>
+		</div>
+
+		<div class="teaser-container">
+			<header class="logo-box t-reveal-logo">
+				<Image src={logo} alt="Fugitivos" class="main-logo" />
+			</header>
+
+			<section class="center-piece t-reveal-center">
+				<div class="cover-container" id="cover-card">
+					<div class="card-face card-front">
+						<div class="cover-inner">
+							<div style="text-align:center; color:#111; font-weight:900; font-size:1vh; letter-spacing:2px;">
+								imagen de portadita ps <br/> 2026
+							</div>
+						</div>
+					</div>
+					<div class="card-face card-back">
+						<div class="social-links">
+							<a href="#" class="s-link">
+								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M9 16h6"></path><path d="M10 8h4"></path></svg> Spotify</span>
+							</a>
+							<a href="#" class="s-link">
+								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="M10 10l5 3-5 3v-6z"></path></svg> YouTube</span>
+							</a>
+							<a href="#" class="s-link">
+								<span><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg> Apple Music</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="title-box">
+					<h1 class="song-name">HASTA MIS MIEDOS</h1>
+					<p class="song-sub">YA DISPONIBLE · 2026</p>
+				</div>
+			</section>
+
+			<footer class="footer-box t-reveal-footer">
+				<div class="available-badge">
+					<span class="avail-dot"></span>
+					ESCÚCHALA AHORA
+				</div>
+				<a href="/info" class="btn-cta" id="info-btn">VER INFO DEL GRUPO</a>
+			</footer>
+		</div>
+
+		<div id="mouse-blur"></div>
+	</main>
+</Layout>
+
+<!-- ── ENTRY & EXIT STYLES ── -->
+<style>
+	/* AVAILABLE BADGE */
+	.available-badge {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: clamp(.65rem, 1.2vh, .9rem);
+		letter-spacing: 6px;
+		color: #fff5e6;
+		text-transform: uppercase;
+		opacity: 0.75;
+	}
+	.avail-dot {
+		width: 8px; height: 8px;
+		border-radius: 50%;
+		background: #fff5e6;
+		box-shadow: 0 0 8px #fff5e6;
+		animation: pulse-dot 1.6s ease-in-out infinite;
+		flex-shrink: 0;
+	}
+	@keyframes pulse-dot {
+		0%, 100% { opacity: 1; transform: scale(1); }
+		50%       { opacity: 0.3; transform: scale(0.6); }
+	}
+
+	/* ENTRY: projector flicker */
+	.t-entry-flash {
+		position: fixed; inset: 0;
+		background: #fff5e6;
+		z-index: 9998; pointer-events: none;
+		animation: tEntryFlicker 2s ease-out forwards;
+	}
+	@keyframes tEntryFlicker {
+		0%  { opacity: 1; }
+		6%  { opacity: 0; }
+		10% { opacity: 0.85; }
+		14% { opacity: 0; }
+		18% { opacity: 0.6; }
+		22% { opacity: 0; }
+		28% { opacity: 0.35; }
+		34% { opacity: 0; }
+		100%{ opacity: 0; }
+	}
+
+	/* ENTRY: horizontal scanlines sweep down */
+	.t-scanline-in {
+		position: fixed; inset: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			#000 0px, #000 3px,
+			transparent 3px, transparent 7px
+		);
+		z-index: 9997; pointer-events: none;
+		animation: tScanDown 1.6s 0.3s cubic-bezier(0.77,0,0.18,1) forwards;
+	}
+	@keyframes tScanDown {
+		0%   { transform: translateY(-100%); opacity: 1; }
+		60%  { transform: translateY(0);    opacity: 1; }
+		100% { transform: translateY(110%); opacity: 0; }
+	}
+
+	/* ENTRY: content slams in */
+	.t-reveal-logo {
+		animation: slamDown 0.55s 1.4s cubic-bezier(0.22,1,0.36,1) both;
+	}
+	@keyframes slamDown {
+		0%   { opacity: 0; transform: translateY(-10vh) scale(1.1); filter: blur(10px); }
+		70%  { transform: translateY(1vh) scale(0.98); }
+		100% { opacity: 1; transform: translateY(0) scale(1); filter: none; }
+	}
+	.t-reveal-center {
+		animation: slamUp 0.55s 1.6s cubic-bezier(0.22,1,0.36,1) both;
+	}
+	@keyframes slamUp {
+		0%   { opacity: 0; transform: translateY(10vh) scale(1.05); filter: blur(8px); }
+		70%  { transform: translateY(-1vh); }
+		100% { opacity: 1; transform: translateY(0); filter: none; }
+	}
+	.t-reveal-footer {
+		animation: slamUp 0.5s 1.9s cubic-bezier(0.22,1,0.36,1) both;
+	}
+
+	/* EXIT: vertical glitch rip */
+	.t-exit-glitch {
+		position: fixed; inset: 0; z-index: 9998;
+		pointer-events: none; opacity: 0; background: #000;
+	}
+	.t-exit-glitch.fire {
+		animation: tGlitchRip 0.6s ease-in forwards;
+	}
+	@keyframes tGlitchRip {
+		0%  { opacity: 0; }
+		10% { opacity: 1; clip-path: inset(0 0 90% 0); filter: hue-rotate(90deg); transform: skewX(5deg); }
+		25% { clip-path: inset(5% 0 55% 10%); filter: hue-rotate(-90deg); transform: skewX(-3deg); }
+		40% { clip-path: inset(15% 5% 20% 0); filter: hue-rotate(45deg); transform: skewX(2deg); }
+		60% { clip-path: inset(0 0 0 0); filter: hue-rotate(0); transform: skewX(0); }
+		80% { opacity: 1; background: #000; }
+		100%{ opacity: 1; background: #fff5e6; }
+	}
+	.t-exit-cream {
+		position: fixed; inset: 0; background: #fff5e6;
+		opacity: 0; pointer-events: none; z-index: 9999;
+	}
+	.t-exit-cream.fire { animation: tCreamFlash 0.4s ease-out forwards; }
+	@keyframes tCreamFlash { 0% { opacity: 1; } 100% { opacity: 0;} }
+</style>
+
+<script>
+	// ── GUARD: always show splash on refresh ──
+	(function() {
+		const ts = sessionStorage.getItem('splashTs');
+		const fresh = ts && (Date.now() - parseInt(ts)) < 5000;
+		if (!fresh) {
+			window.location.replace('/splash');
+		}
+	})();
+
+
+
+	// VHS CLOCK
+	const vhsClock = document.getElementById('vhs-clock');
+	setInterval(() => {
+		const n = new Date();
+		vhsClock.innerText = `${n.toTimeString().split(' ')[0]}:${String(n.getMilliseconds()).padStart(3,'0').slice(0,2)}`;
+	}, 100);
+
+	// RANDOM FLASHES
+	const flash = document.getElementById('flash-lay');
+	setInterval(() => {
+		if (Math.random() > 0.985) { flash.style.opacity = '0.4'; setTimeout(() => flash.style.opacity = '0', 100); }
+	}, 200);
+
+	// CURSOR + LENS + TILT
+	const blurLens    = document.getElementById('mouse-blur');
+	const customCursor= document.getElementById('custom-cursor');
+	const coverCard   = document.getElementById('cover-card');
+	const glitchFlash = document.getElementById('glitch-lay');
+
+	window.addEventListener('mousemove', (e) => {
+		const { clientX: x, clientY: y } = e;
+		if (blurLens)     { blurLens.style.left = x+'px'; blurLens.style.top = y+'px'; }
+		if (customCursor) { customCursor.style.left = x+'px'; customCursor.style.top = y+'px'; }
+		if (coverCard && !coverCard.classList.contains('flipped')) {
+			const rx = (x - window.innerWidth/2)  / (window.innerWidth/2);
+			const ry = (y - window.innerHeight/2) / (window.innerHeight/2);
+			coverCard.style.transform = `perspective(2000px) rotateY(${rx*12}deg) rotateX(${ry*-12}deg)`;
+		}
+	});
+
+	// CARD FLIP + MINI-GLITCH
+	if (coverCard) {
+		coverCard.addEventListener('click', () => {
+			if (glitchFlash) {
+				glitchFlash.classList.add('trigger');
+				setTimeout(() => glitchFlash.classList.remove('trigger'), 200);
+			}
+			coverCard.classList.toggle('flipped');
+			if (coverCard.classList.contains('flipped')) coverCard.style.transform = 'rotateY(180deg)';
+		});
+	}
+
+	// EXIT on info button
+	const infoBtn = document.getElementById('info-btn');
+	if (infoBtn) {
+		infoBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			const href = infoBtn.getAttribute('href');
+			document.getElementById('t-exit-glitch').classList.add('fire');
+			setTimeout(() => {
+				const c = document.getElementById('t-exit-cream');
+				c.style.opacity = '1';
+				c.classList.add('fire');
+				setTimeout(() => { window.location.href = href; }, 380);
+			}, 550);
+		});
+	}
+</script>

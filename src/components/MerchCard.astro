@@ -55,7 +55,7 @@ const { name, price, image, type, description, alternate = false } = Astro.props
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 8vw, 6rem);
     align-items: center;
-    margin-bottom: 15vh;
+    margin-bottom: 10vh;
   }
 
   .merch-card-item.alternate {
@@ -68,7 +68,8 @@ const { name, price, image, type, description, alternate = false } = Astro.props
   @media (max-width: 900px) {
     .merch-card-item {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 1.5rem;
+      margin-bottom: 5vh;
     }
     .merch-card-item.alternate { direction: ltr; }
   }
@@ -124,8 +125,8 @@ const { name, price, image, type, description, alternate = false } = Astro.props
   /* ── DETAILS SIDE ── */
   .title-price-wrap {
     border-bottom: 2px solid var(--cream);
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
   }
 
@@ -168,16 +169,16 @@ const { name, price, image, type, description, alternate = false } = Astro.props
   }
 
   .desc-txt {
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.4;
     opacity: 0.5;
     max-width: 45ch;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   /* ── SIZE GUID ── */
   .size-selector {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 
   .size-label {

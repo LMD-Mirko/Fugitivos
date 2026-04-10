@@ -26,10 +26,11 @@ import logo from "../assets/logo.png";
     <nav class="header-nav" id="header-nav">
       <a href="/teaser" class="nav-link"><span>TEASER</span></a>
       <a href="/info" class="nav-link"><span>INFO</span></a>
-      <!--<a href="/merch" class="nav-link"><span>MERCH</span></a>-->
-      <!--<a href="/contacto" class="nav-link"><span>CONTACTO</span></a>-->
+      <a href="/portavista" class="nav-link"><span>PORTAVISTA</span></a>
+      <a href="/merch" class="nav-link"><span>MERCH</span></a>
+      <a href="/contacto" class="nav-link"><span>CONTACTO</span></a>
       <a
-        href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
+        href="https://open.spotify.com/intl-es/artist/7LT1VRuqPekVJnMKwkzUyn"
         target="_blank"
         class="nav-link spotify"
       >
@@ -256,6 +257,21 @@ import logo from "../assets/logo.png";
     text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
   }
 
+  /* ── INDICADOR DE VISTA ACTUAL (ACTIVE) ── */
+  .nav-link.active-link {
+    color: #e60000;
+    opacity: 1;
+    letter-spacing: 7px;
+    text-shadow: 0 0 15px rgba(230, 0, 0, 0.4);
+  }
+
+  .nav-link.active-link::after {
+    width: 60%;
+    background: #e60000;
+    left: 20%; /* Centrado */
+    box-shadow: 0 0 10px #e60000;
+  }
+
   /* ── HAMBURGER ── */
   .hamburger-btn {
     display: none;
@@ -409,9 +425,17 @@ import logo from "../assets/logo.png";
 
   setTimeout(triggerLogoGlitch, 3000);
 
-  // Cerrar al clickear links
+  // Cerrar al clickear links y detectar link activo
   const links = document.querySelectorAll(".nav-link");
+  const currentPath = window.location.pathname;
+
   links.forEach((l) => {
+    // Detectar si el href coincide con la ruta actual
+    const href = l.getAttribute("href");
+    if (href && (currentPath === href || currentPath === href + "/")) {
+      l.classList.add("active-link");
+    }
+
     l.addEventListener("click", () => {
       btn?.classList.remove("active");
       nav?.classList.remove("active");

@@ -1,11 +1,18 @@
 ---
+import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
 ---
 
 <header class="main-header">
   <div class="header-inner">
     <a href="/teaser" class="header-logo">
-      <img src={logo.src} alt="Fugitivos" class="header-logo-img" />
+      <Image
+        src={logo}
+        alt="Fugitivos"
+        class="header-logo-img"
+        fetchpriority="high"
+        loading="eager"
+      />
     </a>
 
     <!-- Botón Hamburguesa -->

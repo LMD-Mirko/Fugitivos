@@ -176,12 +176,7 @@ const holes = Array.from({ length: 12 });
 		</div>
 
 		<!-- COMPACT SPOTIFY AUTOPLAY (BOTTOM LEFT) -->
-		<div
-			class="t-reveal-footer"
-			style="position: fixed; bottom: clamp(1rem, 3vh, 2rem); left: clamp(1rem, 3vw, 2rem); z-index: 1000; width: 340px; max-width: calc(100vw - 2rem); opacity: 0.8; transition: opacity 0.3s; transform: scale(0.9); transform-origin: bottom left; filter: grayscale(100%) contrast(120%);"
-			onmouseover="this.style.opacity='1'; this.style.filter='grayscale(0)'"
-			onmouseout="this.style.opacity='0.8'; this.style.filter='grayscale(100%) contrast(120%)'"
-		>
+		<div class="spotify-wrapper t-reveal-footer">
 			<iframe
 				style="border-radius:12px; background: transparent;"
 				src="https://open.spotify.com/embed/album/72P0pMX79PKYfLrBkKAYIr?utm_source=generator&theme=0&autoplay=1"
@@ -443,6 +438,31 @@ const holes = Array.from({ length: 12 });
 		}
 		100% {
 			opacity: 0;
+		}
+	}
+	/* SPOTIFY WIDGET */
+	.spotify-wrapper {
+		position: fixed;
+		bottom: clamp(1rem, 3vh, 2rem);
+		left: clamp(1rem, 3vw, 2rem);
+		z-index: 1000;
+		width: 320px;
+		max-width: calc(100vw - 2rem);
+		opacity: 0.8;
+		transition: all 0.4s ease;
+		transform: scale(0.9);
+		transform-origin: bottom left;
+		filter: grayscale(100%) contrast(120%);
+	}
+	.spotify-wrapper:hover {
+		opacity: 1;
+		transform: scale(1);
+		filter: grayscale(0);
+	}
+
+	@media (max-width: 768px) {
+		.spotify-wrapper {
+			display: none; /* Oculto en m\u00f3vil por decisi\u00f3n de dise\u00f1o */
 		}
 	}
 </style>

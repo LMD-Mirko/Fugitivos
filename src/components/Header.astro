@@ -27,7 +27,7 @@ import logo from "../assets/logo.png";
       <a href="/teaser" class="nav-link"><span>TEASER</span></a>
       <a href="/info" class="nav-link"><span>INFO</span></a>
       <!--<a href="/merch" class="nav-link"><span>MERCH</span></a>-->
-      <a href="/contacto" class="nav-link"><span>CONTACTO</span></a>
+      <!--<a href="/contacto" class="nav-link"><span>CONTACTO</span></a>-->
       <a
         href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
         target="_blank"
@@ -84,17 +84,39 @@ import logo from "../assets/logo.png";
   }
 
   @keyframes noiseFlow {
-    0% { transform: translate(0,0); }
-    10% { transform: translate(-1%,-1%); }
-    20% { transform: translate(-2%,1%); }
-    30% { transform: translate(1%,-2%); }
-    40% { transform: translate(-1%,1%); }
-    50% { transform: translate(-2%,-1%); }
-    60% { transform: translate(1%,2%); }
-    70% { transform: translate(1%,1%); }
-    80% { transform: translate(-1%,-2%); }
-    90% { transform: translate(2%,1%); }
-    100% { transform: translate(0,0); }
+    0% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-1%, -1%);
+    }
+    20% {
+      transform: translate(-2%, 1%);
+    }
+    30% {
+      transform: translate(1%, -2%);
+    }
+    40% {
+      transform: translate(-1%, 1%);
+    }
+    50% {
+      transform: translate(-2%, -1%);
+    }
+    60% {
+      transform: translate(1%, 2%);
+    }
+    70% {
+      transform: translate(1%, 1%);
+    }
+    80% {
+      transform: translate(-1%, -2%);
+    }
+    90% {
+      transform: translate(2%, 1%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
   }
 
   .header-inner {
@@ -122,7 +144,9 @@ import logo from "../assets/logo.png";
     width: auto;
     display: block;
     filter: grayscale(1) brightness(1.6) sepia(0.35);
-    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s;
+    transition:
+      transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.4s;
     transform: scale(1.9); /* AUMENTO DE ESCALA BASE */
     transform-origin: left center;
     will-change: transform;
@@ -130,7 +154,8 @@ import logo from "../assets/logo.png";
 
   /* Glitch al hacer hover */
   .header-logo:hover .header-logo-img {
-    filter: grayscale(0) brightness(1.4) sepia(0) drop-shadow(0 0 15px rgba(255,245,230,0.2));
+    filter: grayscale(0) brightness(1.4) sepia(0)
+      drop-shadow(0 0 15px rgba(255, 245, 230, 0.2));
   }
 
   /* Animación de Glitch aleatorio vía JS */
@@ -138,10 +163,21 @@ import logo from "../assets/logo.png";
     animation: glitchHit 0.2s ease-out;
   }
   @keyframes glitchHit {
-    0% { transform: scale(1.9) translate(0); filter: hue-rotate(90deg) brightness(2); }
-    30% { transform: scale(1.9) translate(4px, -2px); opacity: 0.8; }
-    60% { transform: scale(1.9) translate(-4px, 2px); filter: hue-rotate(-90deg); }
-    100% { transform: scale(1.9) translate(0); }
+    0% {
+      transform: scale(1.9) translate(0);
+      filter: hue-rotate(90deg) brightness(2);
+    }
+    30% {
+      transform: scale(1.9) translate(4px, -2px);
+      opacity: 0.8;
+    }
+    60% {
+      transform: scale(1.9) translate(-4px, 2px);
+      filter: hue-rotate(-90deg);
+    }
+    100% {
+      transform: scale(1.9) translate(0);
+    }
   }
 
   /* Mega Glitch al hacer Click */
@@ -149,11 +185,26 @@ import logo from "../assets/logo.png";
     animation: megaGlitch 0.4s steps(2) forwards;
   }
   @keyframes megaGlitch {
-    0% { transform: scale(1.9) translate(0); filter: invert(1); }
-    20% { transform: scale(2.1) translate(-10px, 5px) skewX(20deg); opacity: 0.5; }
-    40% { transform: scale(1.8) translate(10px, -5px) skewX(-20deg); filter: hue-rotate(180deg); }
-    60% { transform: scale(2) translate(-5px, -10px); opacity: 0.8; }
-    100% { transform: scale(1.9) translate(0); filter: invert(0); }
+    0% {
+      transform: scale(1.9) translate(0);
+      filter: invert(1);
+    }
+    20% {
+      transform: scale(2.1) translate(-10px, 5px) skewX(20deg);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1.8) translate(10px, -5px) skewX(-20deg);
+      filter: hue-rotate(180deg);
+    }
+    60% {
+      transform: scale(2) translate(-5px, -10px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.9) translate(0);
+      filter: invert(0);
+    }
   }
 
   /* ── NAVEGACIÓN ARTÍSTICA ── */
@@ -179,7 +230,9 @@ import logo from "../assets/logo.png";
   .nav-link:hover {
     color: var(--cream);
     letter-spacing: 7px;
-    text-shadow: 2px 0 0 rgba(255,0,0,0.3), -2px 0 0 rgba(0,255,255,0.3);
+    text-shadow:
+      2px 0 0 rgba(255, 0, 0, 0.3),
+      -2px 0 0 rgba(0, 255, 255, 0.3);
   }
 
   .nav-link::after {
@@ -222,7 +275,7 @@ import logo from "../assets/logo.png";
     height: 2px;
     background-color: var(--cream);
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: 0 0 5px rgba(255,245,230,0.2);
+    box-shadow: 0 0 5px rgba(255, 245, 230, 0.2);
   }
 
   @media (max-width: 900px) {
@@ -257,19 +310,38 @@ import logo from "../assets/logo.png";
       font-size: 2rem;
       letter-spacing: 12px;
     }
-    
-    .hamburger-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger-btn.active span:nth-child(2) { opacity: 0; }
-    .hamburger-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .hamburger-btn.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
   }
 
   /* ── ENTRADA PROYECTOR ── */
   @keyframes proyectorFlash {
-    0% { filter: brightness(10); opacity: 0; }
-    5% { filter: brightness(1); opacity: 1; }
-    10% { filter: brightness(5); }
-    15% { filter: brightness(1); }
-    100% { filter: brightness(1); opacity: 1; }
+    0% {
+      filter: brightness(10);
+      opacity: 0;
+    }
+    5% {
+      filter: brightness(1);
+      opacity: 1;
+    }
+    10% {
+      filter: brightness(5);
+    }
+    15% {
+      filter: brightness(1);
+    }
+    100% {
+      filter: brightness(1);
+      opacity: 1;
+    }
   }
 
   .main-header {
@@ -287,29 +359,33 @@ import logo from "../assets/logo.png";
   btn?.addEventListener("click", () => {
     btn.classList.toggle("active");
     nav?.classList.toggle("active");
-    document.body.style.overflow = nav?.classList.contains("active") ? "hidden" : "";
+    document.body.style.overflow = nav?.classList.contains("active")
+      ? "hidden"
+      : "";
   });
 
   // EFECTO MAGNÉTICO (LOGO SIGUE AL RATÓN)
   window.addEventListener("mousemove", (e) => {
     if (!logoWrap || !logoImg || window.innerWidth < 900) return;
-    
+
     const rect = logoWrap.getBoundingClientRect();
     const logoX = rect.left + rect.width / 2;
     const logoY = rect.top + rect.height / 2;
-    
+
     const distX = e.clientX - logoX;
     const distY = e.clientY - logoY;
     const distance = Math.sqrt(distX * distX + distY * distY);
 
-    if (distance < 300) { 
+    if (distance < 300) {
       const force = (300 - distance) / 300;
-      const moveX = (distX * force * 0.12);
-      const moveY = (distY * force * 0.12);
-      const rotate = (distX * force * 0.04);
-      (logoImg as HTMLElement).style.transform = `scale(1.9) translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
+      const moveX = distX * force * 0.12;
+      const moveY = distY * force * 0.12;
+      const rotate = distX * force * 0.04;
+      (logoImg as HTMLElement).style.transform =
+        `scale(1.9) translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
     } else {
-      (logoImg as HTMLElement).style.transform = `scale(1.9) translate(0, 0) rotate(0deg)`;
+      (logoImg as HTMLElement).style.transform =
+        `scale(1.9) translate(0, 0) rotate(0deg)`;
     }
   });
 
@@ -330,7 +406,7 @@ import logo from "../assets/logo.png";
     }, 200);
     setTimeout(triggerLogoGlitch, 4000 + Math.random() * 6000);
   }
-  
+
   setTimeout(triggerLogoGlitch, 3000);
 
   // Cerrar al clickear links
@@ -343,4 +419,3 @@ import logo from "../assets/logo.png";
     });
   });
 </script>
-

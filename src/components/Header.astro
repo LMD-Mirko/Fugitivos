@@ -1,0 +1,185 @@
+---
+import logo from "../assets/logo.png";
+---
+
+<header class="main-header">
+  <div class="header-inner">
+    <a href="/teaser" class="header-logo">
+      <img src={logo.src} alt="Fugitivos" class="header-logo-img" />
+    </a>
+
+    <nav class="header-nav">
+      <a href="/teaser" class="nav-link"><span>TEASER</span></a>
+      <a href="/info" class="nav-link"><span>INFO</span></a>
+      <a href="/merch" class="nav-link"><span>MERCH</span></a>
+      <a href="/contacto" class="nav-link"><span>CONTACTO</span></a>
+      <a
+        href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
+        target="_blank"
+        class="nav-link"><span>SPOTIFY</span></a
+      >
+    </nav>
+  </div>
+</header>
+
+<style>
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9000;
+    padding: 0; /* Sin padding vertical para reducir la altura */
+    padding-left: clamp(1rem, 2vw, 3rem);
+    padding-right: clamp(1rem, 5vw, 6rem);
+    background: linear-gradient(
+      to bottom,
+      rgba(2, 2, 2, 0.98) 0%,
+      rgba(2, 2, 2, 0.4) 70%,
+      rgba(2, 2, 2, 0) 100%
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 245, 230, 0.03);
+    pointer-events: none; /* Allows clicking through the transparent parts */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: clamp(60px, 8vh, 90px); /* Controlamos el alto total aquí */
+
+    /* Cinematic Drop Animation */
+    animation: headerDrop 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 1.5s;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: auto; /* Re-enable clicks for content */
+    width: 100%;
+    max-width: 100%; /* Pegado a los extremos */
+    margin: 0;
+  }
+
+  /* LOGO TEXT WITH GLITCH ON HOVER */
+  .header-logo {
+    text-decoration: none;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    margin-left: clamp(
+      2rem,
+      5vw,
+      6rem
+    ); /* Desplazamos más a la derecha para la armonía que pediste */
+  }
+
+  .header-logo:hover {
+    transform: scale(1.03);
+  }
+
+  .header-logo-img {
+    height: clamp(100px, 6vh, 90px); /* Altura base mucho más compacta */
+    width: auto;
+    display: block;
+    filter: grayscale(1) brightness(1.6) sepia(0.35);
+    transition: filter 0.3s ease;
+    transform: scale(
+      1.6
+    ); /* Aumentamos escala para que el texto del logo se vea grande pese al header pequeño */
+    transform-origin: left center;
+  }
+
+  .header-logo:hover .header-logo-img {
+    filter: grayscale(0) brightness(1.2) sepia(0);
+  }
+
+  /* NAVEGACIÓN */
+  .header-nav {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-link {
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(0.95rem, 2vh, 1.3rem);
+    font-weight: 500;
+    color: var(--muted, rgba(255, 245, 230, 0.5));
+    text-decoration: none;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0.3rem 0; /* Más compacto verticalmente */
+    transition:
+      color 0.4s ease,
+      transform 0.4s ease;
+    display: inline-block;
+  }
+
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--cream, #fff5e6);
+    transition: width 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--cream, #fff5e6);
+    text-shadow: 0 0 12px rgba(255, 245, 230, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .nav-link:hover::before {
+    width: 100%;
+  }
+
+  /* Animaciones */
+  @keyframes headerDrop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .header-inner {
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .header-logo {
+      margin-left: 0; /* Reseteado en móvil para centrado */
+    }
+
+    .header-logo-img {
+      height: clamp(55px, 8vh, 80px); /* Ajustado en móvil también */
+      transform: scale(1.2);
+      transform-origin: center;
+    }
+
+    .header-nav {
+      width: 100%;
+      justify-content: center;
+      gap: clamp(1rem, 4vw, 2.5rem);
+    }
+
+    .nav-link {
+      font-size: clamp(0.75rem, 1.5vh, 1rem);
+      letter-spacing: 4px;
+    }
+  }
+</style>

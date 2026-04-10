@@ -1,0 +1,154 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import MerchCard from "../components/MerchCard.astro";
+
+// Importando las imágenes movidas a la carpeta de assets del proyecto
+import imgBlack from "../assets/merch/black-shirt.png";
+import imgWhite from "../assets/merch/white-shirt.png";
+---
+
+<Layout>
+  <Header />
+
+  <main id="merch-page">
+    <!-- ── DYNAMIC GRID DECO ── -->
+    <div class="merch-grid-lines"></div>
+
+    <section class="merch-root">
+      <header class="section-header">
+        <h1 class="main-title-txt">COLECCIÓN <span class="outline-txt">FUGITIVA</span></h1>
+        <div class="sub-header">
+            <span>DROP_001</span>
+            <div class="header-divider"></div>
+            <span>EDICIÓN LIMITADA 2026</span>
+        </div>
+      </header>
+
+      <div class="merch-list">
+        <MerchCard 
+          name="VOID OVERSIZED" 
+          price="S/. 89" 
+          image={imgBlack} 
+          type="ED-001" 
+          description="ALGODÓN PESADO 20/1. LOGO DISTORSIONADO EN SERIGRAFÍA TACTO CERO. CORTE ANCHO PARA MAYOR LIBERTAD."
+        />
+
+        <MerchCard 
+          name="GLITCH RED" 
+          price="S/. 95" 
+          image={imgWhite} 
+          type="ED-002" 
+          description="DISEÑO DE ALTO VOLTAJE. ROJO INDUSTRIAL SOBRE BLANCO PURO. IDEAL PARA EL POGO."
+          alternate={true}
+        />
+      </div>
+
+      <!-- FINAL TAG -->
+      <div class="industrial-seal">
+          <p>PRODUCTO CERTIFICADO // NOISE CONTROL UNIT</p>
+          <div class="seal-bar"></div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>
+
+<style is:global>
+  #merch-page {
+    background: #000;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    min-height: 100vh;
+    padding-top: clamp(80px, 15vh, 120px);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .merch-grid-lines {
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .merch-root {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 6rem);
+  }
+
+  .section-header {
+    margin-bottom: 12vh;
+  }
+
+  .main-title-txt {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -2px;
+  }
+
+  .outline-txt {
+     -webkit-text-stroke: 1px #fff;
+     color: transparent;
+  }
+
+  .sub-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    opacity: 0.4;
+  }
+
+  .header-divider {
+    flex-grow: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .merch-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .industrial-seal {
+    margin: 10vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.15;
+    text-align: center;
+    letter-spacing: 10px;
+    font-size: 0.7rem;
+  }
+
+  .seal-bar {
+    width: 100px;
+    height: 2px;
+    background: #fff;
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

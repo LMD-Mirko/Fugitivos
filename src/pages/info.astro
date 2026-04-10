@@ -6,6 +6,8 @@ import img1 from "../assets/imagenes/530656272_18083226982870711_844605349126313
 import img2 from "../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.jpg";
 import img3 from "../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.jpg";
 import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -834,6 +836,7 @@ import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
     </style>
   </head>
   <body>
+    <Header />
     <div id="cur"></div>
 
     <!-- ══ § 1 HERO ══ -->
@@ -841,10 +844,6 @@ import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
       <div class="hero-bg"></div>
 
       <a href="/teaser" class="hero-back">← Teaser</a>
-      <div class="hero-logo">
-        <img src={logo.src} alt="Fugitivos" />
-      </div>
-
       <!-- LEFT: Typography -->
       <div class="hero-content">
         <p class="hero-eyebrow reveal">Banda de Rock · Lima, Perú</p>
@@ -1186,40 +1185,9 @@ import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
       </div>
     </section>
 
-    <!-- ══ § 5 FOOTER ══ -->
-    <footer>
-      <div style="display: flex; flex-direction: column; gap: 1vh;">
-        <span class="footer-copy"
-          >© 2026 Fugitivos. Todos los derechos reservados.</span
-        >
-        <span
-          style="font-size: 0.65rem; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 8px;"
-        >
-          Desarrollado por NEXTCODE LMD
-          <a
-            href="https://www.instagram.com/limasmirko/"
-            style="color: inherit; transition: opacity 0.3s; opacity: 0.7;"
-            onmouseover="this.style.opacity='1'"
-            onmouseout="this.style.opacity='0.7'"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              width="14"
-              height="14"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-              <circle cx="12" cy="12" r="5"></circle>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"
-              ></circle>
-            </svg>
-          </a>
-        </span>
-      </div>
-      <a href="/teaser" class="footer-back">← Volver al Teaser</a>
-    </footer>
+    <Footer />
+  </body>
+</html>
 
     <script>
       // ── CURSOR ──

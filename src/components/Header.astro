@@ -8,178 +8,332 @@ import logo from "../assets/logo.png";
       <img src={logo.src} alt="Fugitivos" class="header-logo-img" />
     </a>
 
-    <nav class="header-nav">
+    <!-- Botón Hamburguesa -->
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navegación -->
+    <nav class="header-nav" id="header-nav">
       <a href="/teaser" class="nav-link"><span>TEASER</span></a>
       <a href="/info" class="nav-link"><span>INFO</span></a>
-      <a href="/merch" class="nav-link"><span>MERCH</span></a>
+      <!--<a href="/merch" class="nav-link"><span>MERCH</span></a>-->
       <a href="/contacto" class="nav-link"><span>CONTACTO</span></a>
       <a
         href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
         target="_blank"
-        class="nav-link"><span>SPOTIFY</span></a
+        class="nav-link spotify"
       >
+        <span>SPOTIFY</span>
+      </a>
     </nav>
   </div>
 </header>
 
 <style>
+  :root {
+    --cream: #fff5e6;
+  }
+
+  /* Reset local */
+  .main-header * {
+    box-sizing: border-box;
+  }
+
   .main-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9000;
-    padding: 0; /* Sin padding vertical para reducir la altura */
-    padding-left: clamp(1rem, 2vw, 3rem);
-    padding-right: clamp(1rem, 5vw, 6rem);
     background: linear-gradient(
       to bottom,
       rgba(2, 2, 2, 0.98) 0%,
-      rgba(2, 2, 2, 0.4) 70%,
+      rgba(2, 2, 2, 0.6) 70%,
       rgba(2, 2, 2, 0) 100%
     );
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255, 245, 230, 0.03);
-    pointer-events: none; /* Allows clicking through the transparent parts */
-    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 245, 230, 0.05);
+    min-height: clamp(60px, 8vh, 90px);
     display: flex;
     align-items: center;
-    min-height: clamp(60px, 8vh, 90px); /* Controlamos el alto total aquí */
+    overflow: visible;
+  }
 
-    /* Cinematic Drop Animation */
-    animation: headerDrop 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: 1.5s;
+  /* ── ANIMATED GRAIN (TEXTURA CINEMÁTICA) ── */
+  .main-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.12;
+    pointer-events: none;
+    animation: noiseFlow 0.2s infinite steps(2);
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  @keyframes noiseFlow {
+    0% { transform: translate(0,0); }
+    10% { transform: translate(-1%,-1%); }
+    20% { transform: translate(-2%,1%); }
+    30% { transform: translate(1%,-2%); }
+    40% { transform: translate(-1%,1%); }
+    50% { transform: translate(-2%,-1%); }
+    60% { transform: translate(1%,2%); }
+    70% { transform: translate(1%,1%); }
+    80% { transform: translate(-1%,-2%); }
+    90% { transform: translate(2%,1%); }
+    100% { transform: translate(0,0); }
   }
 
   .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    pointer-events: auto; /* Re-enable clicks for content */
     width: 100%;
-    max-width: 100%; /* Pegado a los extremos */
-    margin: 0;
+    padding: 0 clamp(1.5rem, 5vw, 6rem);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
   }
 
-  /* LOGO TEXT WITH GLITCH ON HOVER */
+  /* ── LOGO CON EFECTOS ── */
   .header-logo {
     text-decoration: none;
-    transform: scale(1);
-    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
-    margin-left: clamp(
-      2rem,
-      5vw,
-      6rem
-    ); /* Desplazamos más a la derecha para la armonía que pediste */
-  }
-
-  .header-logo:hover {
-    transform: scale(1.03);
+    z-index: 100;
+    perspective: 1000px;
   }
 
   .header-logo-img {
-    height: clamp(100px, 6vh, 90px); /* Altura base mucho más compacta */
+    height: clamp(80px, 7vh, 100px);
     width: auto;
     display: block;
     filter: grayscale(1) brightness(1.6) sepia(0.35);
-    transition: filter 0.3s ease;
-    transform: scale(
-      1.6
-    ); /* Aumentamos escala para que el texto del logo se vea grande pese al header pequeño */
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s;
+    transform: scale(1.9); /* AUMENTO DE ESCALA BASE */
     transform-origin: left center;
+    will-change: transform;
   }
 
+  /* Glitch al hacer hover */
   .header-logo:hover .header-logo-img {
-    filter: grayscale(0) brightness(1.2) sepia(0);
+    filter: grayscale(0) brightness(1.4) sepia(0) drop-shadow(0 0 15px rgba(255,245,230,0.2));
   }
 
-  /* NAVEGACIÓN */
+  /* Animación de Glitch aleatorio vía JS */
+  .logo-glitch {
+    animation: glitchHit 0.2s ease-out;
+  }
+  @keyframes glitchHit {
+    0% { transform: scale(1.9) translate(0); filter: hue-rotate(90deg) brightness(2); }
+    30% { transform: scale(1.9) translate(4px, -2px); opacity: 0.8; }
+    60% { transform: scale(1.9) translate(-4px, 2px); filter: hue-rotate(-90deg); }
+    100% { transform: scale(1.9) translate(0); }
+  }
+
+  /* Mega Glitch al hacer Click */
+  .logo-click-fx {
+    animation: megaGlitch 0.4s steps(2) forwards;
+  }
+  @keyframes megaGlitch {
+    0% { transform: scale(1.9) translate(0); filter: invert(1); }
+    20% { transform: scale(2.1) translate(-10px, 5px) skewX(20deg); opacity: 0.5; }
+    40% { transform: scale(1.8) translate(10px, -5px) skewX(-20deg); filter: hue-rotate(180deg); }
+    60% { transform: scale(2) translate(-5px, -10px); opacity: 0.8; }
+    100% { transform: scale(1.9) translate(0); filter: invert(0); }
+  }
+
+  /* ── NAVEGACIÓN ARTÍSTICA ── */
   .header-nav {
     display: flex;
-    gap: clamp(1.5rem, 4vw, 4rem);
+    gap: clamp(1rem, 3vw, 3rem);
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-end;
   }
 
   .nav-link {
     font-family: "Oswald", sans-serif;
-    font-size: clamp(0.95rem, 2vh, 1.3rem);
+    font-size: clamp(0.9rem, 2vh, 1.2rem);
     font-weight: 500;
-    color: var(--muted, rgba(255, 245, 230, 0.5));
+    color: rgba(255, 245, 230, 0.4);
     text-decoration: none;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     position: relative;
-    padding: 0.3rem 0; /* Más compacto verticalmente */
-    transition:
-      color 0.4s ease,
-      transform 0.4s ease;
-    display: inline-block;
+    padding: 0.35rem 0;
+    transition: all 0.3s;
   }
 
-  .nav-link::before {
+  .nav-link:hover {
+    color: var(--cream);
+    letter-spacing: 7px;
+    text-shadow: 2px 0 0 rgba(255,0,0,0.3), -2px 0 0 rgba(0,255,255,0.3);
+  }
+
+  .nav-link::after {
     content: "";
     position: absolute;
     bottom: 0px;
     left: 0;
     width: 0%;
-    height: 2px;
-    background: var(--cream, #fff5e6);
-    transition: width 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+    height: 1px;
+    background: var(--cream);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 8px var(--cream);
   }
 
-  .nav-link:hover {
-    color: var(--cream, #fff5e6);
-    text-shadow: 0 0 12px rgba(255, 245, 230, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .nav-link:hover::before {
+  .nav-link:hover::after {
     width: 100%;
   }
 
-  /* Animaciones */
-  @keyframes headerDrop {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  .spotify:hover {
+    color: #1db954;
+    text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
   }
 
-  @media (max-width: 860px) {
-    .header-inner {
-      flex-direction: column;
-      gap: 1.5rem;
-      justify-content: center;
-    }
+  /* ── HAMBURGER ── */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10001;
+  }
 
-    .header-logo {
-      margin-left: 0; /* Reseteado en móvil para centrado */
+  .hamburger-btn span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--cream);
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: 0 0 5px rgba(255,245,230,0.2);
+  }
+
+  @media (max-width: 900px) {
+    .hamburger-btn {
+      display: flex;
     }
 
     .header-logo-img {
-      height: clamp(55px, 8vh, 80px); /* Ajustado en móvil también */
-      transform: scale(1.2);
-      transform-origin: center;
+      transform: scale(1.3);
     }
 
     .header-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
       width: 100%;
+      height: 100vh;
+      background: #020202;
+      flex-direction: column;
       justify-content: center;
-      gap: clamp(1rem, 4vw, 2.5rem);
+      align-items: center;
+      gap: 3rem;
+      transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 10000;
+    }
+
+    .header-nav.active {
+      right: 0;
     }
 
     .nav-link {
-      font-size: clamp(0.75rem, 1.5vh, 1rem);
-      letter-spacing: 4px;
+      font-size: 2rem;
+      letter-spacing: 12px;
     }
+    
+    .hamburger-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger-btn.active span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+
+  /* ── ENTRADA PROYECTOR ── */
+  @keyframes proyectorFlash {
+    0% { filter: brightness(10); opacity: 0; }
+    5% { filter: brightness(1); opacity: 1; }
+    10% { filter: brightness(5); }
+    15% { filter: brightness(1); }
+    100% { filter: brightness(1); opacity: 1; }
+  }
+
+  .main-header {
+    animation: proyectorFlash 0.8s ease-out both;
   }
 </style>
+
+<script>
+  const btn = document.getElementById("hamburger-btn");
+  const nav = document.getElementById("header-nav");
+  const logoWrap = document.querySelector(".header-logo");
+  const logoImg = document.querySelector(".header-logo-img");
+
+  // Toggle Menú
+  btn?.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    nav?.classList.toggle("active");
+    document.body.style.overflow = nav?.classList.contains("active") ? "hidden" : "";
+  });
+
+  // EFECTO MAGNÉTICO (LOGO SIGUE AL RATÓN)
+  window.addEventListener("mousemove", (e) => {
+    if (!logoWrap || !logoImg || window.innerWidth < 900) return;
+    
+    const rect = logoWrap.getBoundingClientRect();
+    const logoX = rect.left + rect.width / 2;
+    const logoY = rect.top + rect.height / 2;
+    
+    const distX = e.clientX - logoX;
+    const distY = e.clientY - logoY;
+    const distance = Math.sqrt(distX * distX + distY * distY);
+
+    if (distance < 300) { 
+      const force = (300 - distance) / 300;
+      const moveX = (distX * force * 0.12);
+      const moveY = (distY * force * 0.12);
+      const rotate = (distX * force * 0.04);
+      (logoImg as HTMLElement).style.transform = `scale(1.9) translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
+    } else {
+      (logoImg as HTMLElement).style.transform = `scale(1.9) translate(0, 0) rotate(0deg)`;
+    }
+  });
+
+  // EFECTO MEGA GLITCH AL CLICK
+  logoWrap?.addEventListener("click", (e) => {
+    logoImg?.classList.add("logo-click-fx");
+    setTimeout(() => {
+      logoImg?.classList.remove("logo-click-fx");
+    }, 400);
+  });
+
+  // Micro-Glitch Aleatorio en Logo
+  function triggerLogoGlitch() {
+    if (!logoImg) return;
+    logoImg.classList.add("logo-glitch");
+    setTimeout(() => {
+      logoImg.classList.remove("logo-glitch");
+    }, 200);
+    setTimeout(triggerLogoGlitch, 4000 + Math.random() * 6000);
+  }
+  
+  setTimeout(triggerLogoGlitch, 3000);
+
+  // Cerrar al clickear links
+  const links = document.querySelectorAll(".nav-link");
+  links.forEach((l) => {
+    l.addEventListener("click", () => {
+      btn?.classList.remove("active");
+      nav?.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  });
+</script>
+

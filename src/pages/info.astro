@@ -2,10 +2,10 @@
 import { Image } from "astro:assets";
 import coverImage from "../assets/imagen portada (1).jpeg";
 import logo from "../assets/logo.png";
-import img1 from "../assets/imagenes/530656272_18083226982870711_8446053491263136157_n.jpg";
-import img2 from "../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.jpg";
-import img3 from "../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.jpg";
-import img4 from "../assets/imagenes/DSC_1536.JPG.jpeg";
+import img1 from "../assets/imagenes/530656272_18083226982870711_8446053491263136157_n.webp";
+import img2 from "../assets/imagenes/530695379_18083227009870711_6105568548409570651_n.webp";
+import img3 from "../assets/imagenes/532190492_18083227072870711_4109783596938428425_n.webp";
+import img4 from "../assets/imagenes/DSC_1536.JPG.webp";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 ---
@@ -1189,119 +1189,117 @@ import Footer from "../components/Footer.astro";
   </body>
 </html>
 
-    <script>
-      // ── CURSOR ──
-      const cur = document.getElementById("cur");
-      window.addEventListener("mousemove", (e) => {
-        cur.style.left = e.clientX + "px";
-        cur.style.top = e.clientY + "px";
+<script>
+  // ── CURSOR ──
+  const cur = document.getElementById("cur");
+  window.addEventListener("mousemove", (e) => {
+    cur.style.left = e.clientX + "px";
+    cur.style.top = e.clientY + "px";
+  });
+
+  // Expand cursor on hoverable elements
+  document.querySelectorAll("a, button").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cur.style.width = "32px";
+      cur.style.height = "32px";
+      cur.style.background = "rgba(255,245,230,.15)";
+    });
+    el.addEventListener("mouseleave", () => {
+      cur.style.width = "16px";
+      cur.style.height = "16px";
+      cur.style.background = "transparent";
+    });
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger siblings
+          const siblings = [...entry.target.parentElement.children].filter(
+            (c) =>
+              c.classList.contains("reveal") ||
+              c.classList.contains("reveal-left"),
+          );
+          const idx = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${idx * 80}ms`;
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
       });
+    },
+    { threshold: 0.12 },
+  );
 
-      // Expand cursor on hoverable elements
-      document.querySelectorAll("a, button").forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          cur.style.width = "32px";
-          cur.style.height = "32px";
-          cur.style.background = "rgba(255,245,230,.15)";
-        });
-        el.addEventListener("mouseleave", () => {
-          cur.style.width = "16px";
-          cur.style.height = "16px";
-          cur.style.background = "transparent";
-        });
-      });
+  document
+    .querySelectorAll(".reveal, .reveal-left")
+    .forEach((el) => observer.observe(el));
 
-      // ── SCROLL REVEAL ──
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-              // stagger siblings
-              const siblings = [...entry.target.parentElement.children].filter(
-                (c) =>
-                  c.classList.contains("reveal") ||
-                  c.classList.contains("reveal-left"),
-              );
-              const idx = siblings.indexOf(entry.target);
-              entry.target.style.transitionDelay = `${idx * 80}ms`;
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
+  // ── PARALLAX SUBTLE on hero ──
+  const heroBg = document.querySelector(".hero-bg");
+  window.addEventListener(
+    "scroll",
+    () => {
+      const y = window.scrollY;
+      if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
+    },
+    { passive: true },
+  );
 
-      document
-        .querySelectorAll(".reveal, .reveal-left")
-        .forEach((el) => observer.observe(el));
+  // ── POLAROID: HOVER = FAN (desktop), TAP = FAN (mobile) ──
+  const polStack = document.getElementById("pol-stack");
+  const pols = document.querySelectorAll(".pol");
+  const isTouchDevice = window.matchMedia("(hover: none)").matches;
 
-      // ── PARALLAX SUBTLE on hero ──
-      const heroBg = document.querySelector(".hero-bg");
-      window.addEventListener(
-        "scroll",
-        () => {
-          const y = window.scrollY;
-          if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
-        },
-        { passive: true },
-      );
+  if (!isTouchDevice) {
+    // Desktop: hover opens/closes
+    polStack.addEventListener("mouseenter", () =>
+      polStack.classList.add("fanned"),
+    );
+    polStack.addEventListener("mouseleave", () => {
+      polStack.classList.remove("fanned");
+      // Keep selected card on top but reset its lifted state
+    });
+  } else {
+    // Mobile: tap once to fan, IntersectionObserver auto-opens on scroll
+    let isFanned = false;
 
-      // ── POLAROID: HOVER = FAN (desktop), TAP = FAN (mobile) ──
-      const polStack = document.getElementById("pol-stack");
-      const pols = document.querySelectorAll(".pol");
-      const isTouchDevice = window.matchMedia("(hover: none)").matches;
-
-      if (!isTouchDevice) {
-        // Desktop: hover opens/closes
-        polStack.addEventListener("mouseenter", () =>
-          polStack.classList.add("fanned"),
-        );
-        polStack.addEventListener("mouseleave", () => {
-          polStack.classList.remove("fanned");
-          // Keep selected card on top but reset its lifted state
-        });
-      } else {
-        // Mobile: tap once to fan, IntersectionObserver auto-opens on scroll
-        let isFanned = false;
-
-        // AUTO-OPEN when polaroids scroll into view
-        const fanObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                polStack.classList.add("fanned");
-                isFanned = true;
-              } else {
-                polStack.classList.remove("fanned");
-                pols.forEach((p) => p.classList.remove("pol-active"));
-                isFanned = false;
-              }
-            });
-          },
-          { threshold: 0.4 },
-        );
-        fanObserver.observe(polStack);
-
-        // Tap a card to bring it front while fanned
-        polStack.addEventListener("click", (e) => {
-          const clickedPol = e.target.closest(".pol");
-          if (isFanned && clickedPol) {
+    // AUTO-OPEN when polaroids scroll into view
+    const fanObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            polStack.classList.add("fanned");
+            isFanned = true;
+          } else {
+            polStack.classList.remove("fanned");
             pols.forEach((p) => p.classList.remove("pol-active"));
-            clickedPol.classList.add("pol-active");
-            e.stopPropagation();
+            isFanned = false;
           }
         });
-      }
+      },
+      { threshold: 0.4 },
+    );
+    fanObserver.observe(polStack);
 
-      // Click a card → bring it to front (works on both)
-      pols.forEach((pol) => {
-        pol.addEventListener("click", (e) => {
-          e.stopPropagation();
-          pols.forEach((p) => p.classList.remove("pol-active"));
-          pol.classList.add("pol-active");
-        });
-      });
-    </script>
-  </body>
-</html>
+    // Tap a card to bring it front while fanned
+    polStack.addEventListener("click", (e) => {
+      const clickedPol = e.target.closest(".pol");
+      if (isFanned && clickedPol) {
+        pols.forEach((p) => p.classList.remove("pol-active"));
+        clickedPol.classList.add("pol-active");
+        e.stopPropagation();
+      }
+    });
+  }
+
+  // Click a card → bring it to front (works on both)
+  pols.forEach((pol) => {
+    pol.addEventListener("click", (e) => {
+      e.stopPropagation();
+      pols.forEach((p) => p.classList.remove("pol-active"));
+      pol.classList.add("pol-active");
+    });
+  });
+</script>

@@ -1,3 +1,4 @@
+---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
@@ -69,7 +70,7 @@ import Layout from "../layouts/Layout.astro";
             <h2 class="form-header">ENVÍA EL MANIFIESTO</h2>
             <form id="chaos-form" onsubmit="event.preventDefault(); document.getElementById('success-glitch').style.display='flex'">
               <div class="input-block">
-                <input type="text" placeholder="¿QUIUÉN ERES?" required />
+                <input type="text" placeholder="¿QUIÉN ERES?" required />
                 <div class="scan-line"></div>
               </div>
               <div class="input-block">
@@ -110,7 +111,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700;900&family=Syncopate:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
 
   :root {
     --cream: #fff5e6;
@@ -122,6 +123,7 @@ import Layout from "../layouts/Layout.astro";
   body {
     background: var(--black);
     overflow-x: hidden;
+    animation: entryShake 0.4s 0.2s ease-in-out both;
   }
 
   #ultra-contact {
@@ -131,7 +133,7 @@ import Layout from "../layouts/Layout.astro";
     position: relative;
     padding-top: clamp(100px, 15vh, 180px);
     background: radial-gradient(circle at 30% 30%, #0a0a0a 0%, #000 100%);
-    overflow: hidden; /* Seguridad extra contra scroll horizontal */
+    overflow: hidden;
   }
 
   /* ── FX LAYERS ── */
@@ -168,19 +170,18 @@ import Layout from "../layouts/Layout.astro";
   .bg-title-wrap {
     position: fixed;
     top: 50%;
-    left: 2%; /* Más pegado al borde */
+    left: 2%;
     transform: translateY(-50%) rotate(-90deg);
     display: flex;
     flex-direction: column;
     z-index: 0;
     pointer-events: none;
     opacity: 0.04;
+    animation: revealBg 2s 1s ease-out both;
   }
 
   @media (max-width: 800px) {
-    .bg-title-wrap {
-        display: none; /* Ocultar en pantallas pequeñas para evitar ruido visual y problemas de overflow */
-    }
+    .bg-title-wrap { display: none; }
   }
 
   .bg-txt {
@@ -240,35 +241,11 @@ import Layout from "../layouts/Layout.astro";
     100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
   }
 
-  /* ── SLAM ANIMATIONS ── */
-  .left-wing {
-    animation: slamLeft 0.6s 0.4s cubic-bezier(0.19, 1, 0.22, 1) both;
-  }
-  @keyframes slamLeft {
-    0% { transform: translateX(-100px) rotate(-10deg); opacity: 0; filter: blur(20px); }
-    100% { transform: translateX(0) rotate(0); opacity: 1; filter: blur(0); }
-  }
-
-  .right-wing {
-    animation: slamRight 0.6s 0.6s cubic-bezier(0.19, 1, 0.22, 1) both;
-  }
-  @keyframes slamRight {
-    0% { transform: translateX(100px) rotate(10deg); opacity: 0; filter: blur(20px); }
-    100% { transform: translateX(0) rotate(0); opacity: 1; filter: blur(0); }
-  }
-
-  .bg-title-wrap {
-    animation: revealBg 2s 1s ease-out both;
-  }
   @keyframes revealBg {
     0% { opacity: 0; transform: translateY(-50%) rotate(-90deg) scale(0.8); }
     100% { opacity: 0.04; transform: translateY(-50%) rotate(-90deg) scale(1); }
   }
 
-  /* Screen shake on entry */
-  body {
-    animation: entryShake 0.4s 0.2s ease-in-out both;
-  }
   @keyframes entryShake {
     0%, 100% { transform: translate(0, 0); }
     20% { transform: translate(-3px, 3px); }
@@ -286,12 +263,19 @@ import Layout from "../layouts/Layout.astro";
   }
 
   @media (max-width: 1000px) {
-    .mega-section {
-      grid-template-columns: 1fr;
-    }
+    .mega-section { grid-template-columns: 1fr; }
   }
 
   /* ── LEFT WING ── */
+  .left-wing {
+    animation: slamLeft 0.6s 0.4s cubic-bezier(0.19, 1, 0.22, 1) both;
+  }
+  
+  @keyframes slamLeft {
+    0% { transform: translateX(-100px) rotate(-10deg); opacity: 0; filter: blur(20px); }
+    100% { transform: translateX(0) rotate(0); opacity: 1; filter: blur(0); }
+  }
+
   .torn-paper {
     position: relative;
     padding: 2rem;
@@ -341,6 +325,15 @@ import Layout from "../layouts/Layout.astro";
   }
 
   /* ── RIGHT WING ── */
+  .right-wing {
+    animation: slamRight 0.6s 0.6s cubic-bezier(0.19, 1, 0.22, 1) both;
+  }
+
+  @keyframes slamRight {
+    0% { transform: translateX(100px) rotate(10deg); opacity: 0; filter: blur(20px); }
+    100% { transform: translateX(0) rotate(0); opacity: 1; filter: blur(0); }
+  }
+
   .brutal-details {
     display: flex;
     flex-direction: column;
@@ -355,9 +348,7 @@ import Layout from "../layouts/Layout.astro";
     transition: transform 0.3s;
   }
 
-  .d-row:hover {
-    transform: translateX(20px);
-  }
+  .d-row:hover { transform: translateX(20px); }
 
   .d-num {
     font-size: 1.5rem;
@@ -530,7 +521,7 @@ import Layout from "../layouts/Layout.astro";
 
   .glitch-box h1 { font-size: 5rem; color: var(--blood); }
   .glitch-box p { font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 2rem; }
-  .glital-box button {
+  .glitch-box button {
       padding: 1rem 3rem;
       background: var(--cream);
       border: none;
@@ -551,12 +542,11 @@ import Layout from "../layouts/Layout.astro";
     .form-container { padding: 1.5rem; }
     .brutal-submit { padding: 1.2rem 1rem; font-size: 1.1rem; }
     .input-block input, .input-block textarea { font-size: 1.2rem; }
-    .warning-tape { display: none; } /* Ocultar para limpiar el scroll en móviles */
+    .warning-tape { display: none; }
   }
 
   @media (max-width: 360px) {
       .main-title { font-size: 3.5rem; }
       .manifesto-box { padding-left: 1rem; }
   }
-
 </style>

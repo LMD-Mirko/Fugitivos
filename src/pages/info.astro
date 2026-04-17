@@ -843,7 +843,7 @@ import Footer from "../components/Footer.astro";
     <section id="hero">
       <div class="hero-bg"></div>
 
-      <a href="/teaser" class="hero-back">← Teaser</a>
+      <a href="/teaser" class="hero-back">Teaser</a>
       <!-- LEFT: Typography -->
       <div class="hero-content">
         <p class="hero-eyebrow reveal">Banda de Rock · Lima, Perú</p>
@@ -1316,4 +1316,13 @@ import Footer from "../components/Footer.astro";
       pol.classList.add("pol-active");
     });
   });
+
+  // ── GUARD: always show splash on refresh ──
+  (function () {
+    const ts = sessionStorage.getItem("splashTs");
+    const fresh = ts && Date.now() - parseInt(ts) < 10000;
+    if (!fresh) {
+      window.location.replace("/splash");
+    }
+  })();
 </script>

@@ -2,564 +2,664 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
-import coverImage from "../assets/imagen portada (1).jpeg";
-import "../styles/teaser.css";
+import coverHastaMisMiedos from "../assets/imagen portada (1).jpeg";
+import coverDelMismoLado from "../assets/Captura desde 2026-04-22 19-06-28.png";
+import Header from "../components/Header.astro";
 
-const holes = Array.from({ length: 12 });
+// Mock data for teasers - we will scale this later
+const teasers = [
+  {
+    id: "hasta-mis-miedos",
+    title: "HASTA MIS MIEDOS",
+    date: "12 MAY 2026",
+    status: "DISPONIBLE",
+    image: coverHastaMisMiedos,
+    url: "/teasers/hasta-mis-miedos",
+    bpm: "142",
+    length: "0:45"
+  },
+  {
+    id: "del-mismo-lado",
+    title: "DEL MISMO LADO",
+    date: "12 ABR 2026",
+    status: "DISPONIBLE",
+    image: coverDelMismoLado,
+    url: "/teasers/del-mismo-lado",
+    bpm: "128",
+    length: "3:42"
+  },
+  {
+    id: "proximamente-1",
+    title: "???",
+    date: "JUNIO 2026",
+    status: "BLOQUEADO",
+    image: null,
+    url: "#",
+    bpm: "???",
+    length: "???"
+  }
+];
 ---
 
 <Layout>
-	<main>
-		<!-- ── TEASER ENTRY: PROJECTOR FLICKER + SCANLINE REVEAL ── -->
-		<div class="t-entry-flash" id="t-entry-flash"></div>
-		<div class="t-scanline-in" id="t-scanline-in"></div>
+  <main class="teaser-hub">
+    <!-- ── BACKGROUND FX ── -->
+    <div class="hub-bg">
+      <div class="noise-overlay"></div>
+      <div class="scanlines"></div>
+      <div class="vignette"></div>
+      <div class="ambient-light"></div>
+    </div>
 
-		<!-- ── TEASER EXIT OVERLAY ── -->
-		<div class="t-exit-glitch" id="t-exit-glitch"></div>
-		<div class="t-exit-cream" id="t-exit-cream"></div>
+    <Header />
 
-		<!-- EXISTING FX -->
-		<div class="strobe-intro"></div>
-		<div class="camera-flash" id="flash-lay"></div>
-		<div class="glitch-flash" id="glitch-lay"></div>
+    <!-- ── HUB INTERFACE ── -->
+    <div class="hub-ui">
+      <!-- Top Bar Spacer -->
+      <div class="header-spacer" style="height: 100px;"></div>
 
-		<!-- CUSTOM CURSOR -->
-		<div id="custom-cursor"></div>
 
-		<!-- FILM REEL PERFORATIONS -->
-		<div class="film-reel-holes reel-left">
-			{holes.map(() => <div class="hole" />)}
-		</div>
-		<div class="film-reel-holes reel-right">
-			{holes.map(() => <div class="hole" />)}
-		</div>
+      <!-- Main Selection Grid -->
+      <section class="teaser-grid">
+        <div class="grid-label">SELECCIONAR ARCHIVO DE AUDIO</div>
+        
+        <div class="cards-container">
+          {teasers.map((t, index) => (
+            <a href={t.url} class={`teaser-card ${t.status === 'BLOQUEADO' ? 'locked' : ''}`} data-id={t.id}>
+              <div class="card-inner">
+                <!-- Glitch Background -->
+                <div class="card-bg"></div>
+                
+                <!-- Media Section -->
+                <div class="card-media">
+                  {t.image ? (
+                    <Image src={t.image} alt={t.title} class="card-img" />
+                  ) : (
+                    <div class="locked-placeholder">
+                      <span class="lock-icon">🔒</span>
+                      <div class="decryption-progress">
+                        <div class="progress-bar"></div>
+                        <span class="progress-pct">92% DESCIFRANDO...</span>
+                      </div>
+                      <div class="static-noise"></div>
+                    </div>
+                  )}
+                  <div class="media-overlay"></div>
+                  <!-- Holographic Shine -->
+                  <div class="card-shine"></div>
+                </div>
 
-		<!-- VHS HUD -->
-		<div class="vhs-overlay">
-			<div class="vhs-top">
-				<span class="vhs-rec">● REC</span>
-				<span id="vhs-clock">00:00:00:00</span>
-			</div>
-			<div class="vhs-bottom">SP <br /> AUTO</div>
-		</div>
+                <!-- Info Section -->
+                <div class="card-content">
+                  <div class="card-meta">
+                    <span class="meta-item">NO. {String(index + 1).padStart(2, '0')}</span>
+                    <span class="meta-item">{t.status}</span>
+                  </div>
+                  <h2 class="card-title">{t.title}</h2>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <span>BPM: {t.bpm}</span>
+                      <span>DUR: {t.length}</span>
+                    </div>
+                    <div class="card-date">{t.date}</div>
+                  </div>
+                </div>
 
-		<!-- UI -->
-		<button class="listen-btn"><i></i> OÍR TEASER</button>
+                <!-- Corner Decorations -->
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+              </div>
+              
+              <!-- Hover FX: Leaking code -->
+              <div class="card-hover-fx">
+                <span>LOADING_DATA...</span>
+                <span>DECRYPTING_AUDIO...</span>
+                <span>{t.id.toUpperCase()}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
 
-		<div class="liquid-bg">
-			<div class="stage-mist"></div>
-			<div class="debris-field">
-				<div class="debris" style="left:5%;  animation-delay: 0s;">
-				</div>
-				<div class="debris" style="left:25%; animation-delay: -7s;">
-				</div>
-				<div class="debris" style="left:45%; animation-delay: -14s;">
-				</div>
-				<div class="debris" style="left:65%; animation-delay: -3s;">
-				</div>
-				<div class="debris" style="left:85%; animation-delay: -10s;">
-				</div>
-			</div>
-			<div class="marquee-container">
-				<div class="marquee-text">
-					FUGITIVOS . HASTA MIS MIEDOS . MAYO 12 . 2026 . FUGITIVOS .
-					HASTA MIS MIEDOS . MAYO 12 . 2026 .
-				</div>
-			</div>
-			<div class="film-grain"></div>
-		</div>
+      <!-- Bottom Status Bar -->
+      <footer class="hub-footer">
+        <div class="footer-left">
+          <div class="ticker-wrap">
+            <div class="ticker">
+              ++ FUGITIVOS_VAULT ++ SELECCIONA UN TEASER PARA REPRODUCIR ++ ADVERTENCIA: CONTENIDO NO FILTRADO ++
+            </div>
+          </div>
+        </div>
+        <div class="footer-right">
+          <span id="coord-display">X: 000 Y: 000</span>
+        </div>
+      </footer>
+    </div>
 
-		<div class="teaser-container">
-			<header class="logo-box t-reveal-logo">
-				<Image src={logo} alt="Fugitivos" class="main-logo" />
-			</header>
-
-			<section class="center-piece t-reveal-center">
-				<div class="cover-container" id="cover-card">
-					<div class="card-face card-front">
-						<div
-							class="cover-inner"
-							style="padding: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;"
-						>
-							<Image
-								src={coverImage}
-								alt="Portada Fugitivos 2026"
-								style="width: 100%; height: 100%; object-fit: cover;"
-							/>
-						</div>
-					</div>
-					<div class="card-face card-back">
-						<div class="social-links">
-							<a
-								href="https://open.spotify.com/intl-es/album/72P0pMX79PKYfLrBkKAYIr"
-								class="s-link"
-							>
-								<span
-									><svg
-										viewBox="0 0 24 24"
-										width="20"
-										height="20"
-										stroke="currentColor"
-										stroke-width="2"
-										fill="none"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										><circle cx="12" cy="12" r="10"
-										></circle><path d="M8 12h8"></path><path
-											d="M9 16h6"></path><path d="M10 8h4"
-										></path></svg
-									> Spotify</span
-								>
-							</a>
-							<a
-								href="https://youtu.be/IZmf1BATdL8?si=9_3y4HTu2xaT5qCJ"
-								class="s-link"
-							>
-								<span
-									><svg
-										viewBox="0 0 24 24"
-										width="20"
-										height="20"
-										stroke="currentColor"
-										stroke-width="2"
-										fill="none"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										><rect
-											x="2"
-											y="4"
-											width="20"
-											height="16"
-											rx="2"
-											ry="2"></rect><path
-											d="M10 10l5 3-5 3v-6z"></path></svg
-									> YouTube</span
-								>
-							</a>
-							<a href="#" class="s-link">
-								<span
-									><svg
-										viewBox="0 0 24 24"
-										width="20"
-										height="20"
-										stroke="currentColor"
-										stroke-width="2"
-										fill="none"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										><path d="M9 18V5l12-2v13"
-										></path><circle cx="6" cy="18" r="3"
-										></circle><circle cx="18" cy="16" r="3"
-										></circle></svg
-									> Apple Music</span
-								>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="title-box">
-					<h1 class="song-name">HASTA MIS MIEDOS</h1>
-					<p class="song-sub">YA DISPONIBLE · 2026</p>
-				</div>
-			</section>
-
-			<footer class="footer-box t-reveal-footer">
-				<div class="available-badge">
-					<span class="avail-dot"></span>
-					ESCÚCHALA AHORA
-				</div>
-				<a href="/info" class="btn-cta" id="info-btn"
-					>VER INFO DEL GRUPO</a
-				>
-			</footer>
-		</div>
-
-		<!-- COMPACT SPOTIFY AUTOPLAY (BOTTOM LEFT) -->
-		<div class="spotify-wrapper t-reveal-footer">
-			<iframe
-				style="border-radius:12px; background: transparent;"
-				src="https://open.spotify.com/embed/album/72P0pMX79PKYfLrBkKAYIr?utm_source=generator&theme=0&autoplay=1"
-				width="100%"
-				height="80"
-				frameborder="0"
-				scrolling="no"
-				allowfullscreen=""
-				allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-				loading="lazy"
-			>
-			</iframe>
-		</div>
-
-		<div id="mouse-blur"></div>
-
-		<!-- TRUCO PARA AUTOPLAY: YouTube oculto con control de volumen -->
-		<div
-			style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; z-index: -999;"
-		>
-			<div id="yt-player"></div>
-		</div>
-
-		<script is:inline>
-			var ytScript = document.createElement("script");
-			ytScript.src = "https://www.youtube.com/iframe_api";
-			var firstScript = document.getElementsByTagName("script")[0];
-			firstScript.parentNode.insertBefore(ytScript, firstScript);
-
-			var ytPlayer;
-			function onYouTubeIframeAPIReady() {
-				ytPlayer = new YT.Player("yt-player", {
-					height: "10",
-					width: "10",
-					videoId: "IZmf1BATdL8",
-					playerVars: {
-						autoplay: 1,
-						loop: 1,
-						controls: 0,
-						playlist: "IZmf1BATdL8",
-					},
-					events: {
-						onReady: function (event) {
-							// >>> AQUÍ CONTROLA EL VOLUMEN (0 a 100) <<<
-							event.target.setVolume(20);
-							event.target.playVideo();
-						},
-					},
-				});
-			}
-		</script>
-	</main>
+    <!-- ── AUDIO & CURSOR ── -->
+    <div id="custom-cursor"></div>
+  </main>
 </Layout>
 
-<!-- ── ENTRY & EXIT STYLES ── -->
 <style>
-	/* AVAILABLE BADGE */
-	.available-badge {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		font-size: clamp(0.65rem, 1.2vh, 0.9rem);
-		letter-spacing: 6px;
-		color: #fff5e6;
-		text-transform: uppercase;
-		opacity: 0.75;
-	}
-	.avail-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: #fff5e6;
-		box-shadow: 0 0 8px #fff5e6;
-		animation: pulse-dot 1.6s ease-in-out infinite;
-		flex-shrink: 0;
-	}
-	@keyframes pulse-dot {
-		0%,
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-		50% {
-			opacity: 0.3;
-			transform: scale(0.6);
-		}
-	}
+  :root {
+    --cream: #fff5e6;
+    --red: #ff3e3e;
+    --dark: #0a0a0a;
+    --gray: #1a1a1a;
+  }
 
-	/* ENTRY: projector flicker */
-	.t-entry-flash {
-		position: fixed;
-		inset: 0;
-		background: #fff5e6;
-		z-index: 9998;
-		pointer-events: none;
-		animation: tEntryFlicker 2s ease-out forwards;
-	}
-	@keyframes tEntryFlicker {
-		0% {
-			opacity: 1;
-		}
-		6% {
-			opacity: 0;
-		}
-		10% {
-			opacity: 0.85;
-		}
-		14% {
-			opacity: 0;
-		}
-		18% {
-			opacity: 0.6;
-		}
-		22% {
-			opacity: 0;
-		}
-		28% {
-			opacity: 0.35;
-		}
-		34% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
+  .teaser-hub {
+    position: fixed;
+    inset: 0;
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Oswald', sans-serif;
+    overflow: hidden;
+    cursor: none;
+  }
 
-	/* ENTRY: horizontal scanlines sweep down */
-	.t-scanline-in {
-		position: fixed;
-		inset: 0;
-		background: repeating-linear-gradient(
-			to bottom,
-			#000 0px,
-			#000 3px,
-			transparent 3px,
-			transparent 7px
-		);
-		z-index: 9997;
-		pointer-events: none;
-		animation: tScanDown 1.6s 0.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
-	}
-	@keyframes tScanDown {
-		0% {
-			transform: translateY(-100%);
-			opacity: 1;
-		}
-		60% {
-			transform: translateY(0);
-			opacity: 1;
-		}
-		100% {
-			transform: translateY(110%);
-			opacity: 0;
-		}
-	}
+  /* ── INITIAL DECRYPTION ANIMATION ── */
+  body.is-decrypting .hub-ui {
+    animation: decryption-flicker 1.5s steps(4);
+  }
+  @keyframes decryption-flicker {
+    0% { opacity: 0; filter: brightness(5) blur(10px); }
+    20% { opacity: 1; filter: brightness(1) blur(0); }
+    40% { opacity: 0.5; filter: brightness(3) blur(5px); }
+    60% { opacity: 1; filter: brightness(1) blur(0); }
+    100% { opacity: 1; }
+  }
 
-	/* ENTRY: content slams in */
-	.t-reveal-logo {
-		animation: slamDown 0.55s 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-	@keyframes slamDown {
-		0% {
-			opacity: 0;
-			transform: translateY(-10vh) scale(1.1);
-			filter: blur(10px);
-		}
-		70% {
-			transform: translateY(1vh) scale(0.98);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0) scale(1);
-			filter: none;
-		}
-	}
-	.t-reveal-center {
-		animation: slamUp 0.55s 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
-	@keyframes slamUp {
-		0% {
-			opacity: 0;
-			transform: translateY(10vh) scale(1.05);
-			filter: blur(8px);
-		}
-		70% {
-			transform: translateY(-1vh);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-			filter: none;
-		}
-	}
-	.t-reveal-footer {
-		animation: slamUp 0.5s 1.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-	}
+  /* ── BACKGROUND ── */
+  .hub-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .scanlines.active {
+    animation: scan-flicker 0.1s infinite;
+    opacity: 0.8;
+  }
+  @keyframes scan-flicker {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+    100% { transform: translateY(0); }
+  }
+  .ambient-light {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 62, 62, 0.05) 0%, transparent 70%);
+  }
 
-	/* EXIT: vertical glitch rip */
-	.t-exit-glitch {
-		position: fixed;
-		inset: 0;
-		z-index: 9998;
-		pointer-events: none;
-		opacity: 0;
-		background: #000;
-	}
-	.t-exit-glitch.fire {
-		animation: tGlitchRip 0.6s ease-in forwards;
-	}
-	@keyframes tGlitchRip {
-		0% {
-			opacity: 0;
-		}
-		10% {
-			opacity: 1;
-			clip-path: inset(0 0 90% 0);
-			filter: hue-rotate(90deg);
-			transform: skewX(5deg);
-		}
-		25% {
-			clip-path: inset(5% 0 55% 10%);
-			filter: hue-rotate(-90deg);
-			transform: skewX(-3deg);
-		}
-		40% {
-			clip-path: inset(15% 5% 20% 0);
-			filter: hue-rotate(45deg);
-			transform: skewX(2deg);
-		}
-		60% {
-			clip-path: inset(0 0 0 0);
-			filter: hue-rotate(0);
-			transform: skewX(0);
-		}
-		80% {
-			opacity: 1;
-			background: #000;
-		}
-		100% {
-			opacity: 1;
-			background: #fff5e6;
-		}
-	}
-	.t-exit-cream {
-		position: fixed;
-		inset: 0;
-		background: #fff5e6;
-		opacity: 0;
-		pointer-events: none;
-		z-index: 9999;
-	}
-	.t-exit-cream.fire {
-		animation: tCreamFlash 0.4s ease-out forwards;
-	}
-	@keyframes tCreamFlash {
-		0% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
-		}
-	}
-	/* SPOTIFY WIDGET */
-	.spotify-wrapper {
-		position: fixed;
-		bottom: clamp(1rem, 3vh, 2rem);
-		left: clamp(1rem, 3vw, 2rem);
-		z-index: 1000;
-		width: 320px;
-		max-width: calc(100vw - 2rem);
-		opacity: 0.8;
-		transition: all 0.4s ease;
-		transform: scale(0.9);
-		transform-origin: bottom left;
-		filter: grayscale(100%) contrast(120%);
-	}
-	.spotify-wrapper:hover {
-		opacity: 1;
-		transform: scale(1);
-		filter: grayscale(0);
-	}
+  /* ── UI STRUCTURE ── */
+  .hub-ui {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
 
-	@media (max-width: 768px) {
-		.spotify-wrapper {
-			display: none; /* Oculto en m\u00f3vil por decisi\u00f3n de dise\u00f1o */
-		}
-	}
+  /* Header */
+  .hub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255,245,230,0.1);
+    padding-bottom: 1rem;
+  }
+  .hub-logo {
+    height: 40px;
+    filter: grayscale(1) brightness(1.5);
+  }
+  .system-status {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    opacity: 0.6;
+  }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+  .terminal-text {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--red);
+    text-align: right;
+  }
+  .back-link {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .back-link:hover { opacity: 1; }
+
+  /* Grid */
+  .teaser-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  .grid-label {
+    font-size: 0.6rem;
+    letter-spacing: 8px;
+    opacity: 0.3;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+  }
+
+  .cards-container {
+    display: flex;
+    gap: 3rem;
+    perspective: 2000px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── CARDS ── */
+  .teaser-card {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--gray);
+    border: 1px solid rgba(255,245,230,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+
+  .teaser-card:hover {
+    transform: translateY(-20px) rotateX(5deg) rotateY(-5deg);
+  }
+  .teaser-card:hover .card-inner {
+    border-color: var(--red);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 20px rgba(255, 62, 62, 0.1);
+  }
+
+  /* Media Area */
+  .card-media {
+    height: 60%;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.2);
+    transition: transform 0.8s, filter 0.8s;
+  }
+
+  /* Holographic Shine */
+  .card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.05) 30%,
+      rgba(255, 255, 255, 0.2) 40%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 70%
+    );
+    z-index: 5;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .teaser-card:hover .card-img {
+    transform: scale(1.1);
+    filter: grayscale(0) contrast(1);
+  }
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--gray), transparent);
+  }
+
+  /* Locked State */
+  .locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .locked-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #050505;
+    gap: 1rem;
+  }
+  .lock-icon { font-size: 2rem; opacity: 0.2; }
+
+  .decryption-progress {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 62, 62, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; height: 100%;
+    width: 92%;
+    background: var(--red);
+    box-shadow: 0 0 10px var(--red);
+    animation: load-pulse 2s infinite alternate;
+  }
+  @keyframes load-pulse {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+  }
+  .progress-pct {
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-align: center;
+    font-family: monospace;
+  }
+  .static-noise {
+    position: absolute;
+    inset: 0;
+    background: url("https://media.giphy.com/media/oEI9uWUqWMrBK/giphy.gif");
+    background-size: cover;
+    opacity: 0.05;
+    mix-blend-mode: screen;
+  }
+
+  /* Content Area */
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: auto;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1rem;
+  }
+  .stats {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.6rem;
+    opacity: 0.4;
+    gap: 2px;
+  }
+  .card-date {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  /* Decorations */
+  .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--red);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tl { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
+  .tr { top: -5px; right: -5px; border-left: 0; border-bottom: 0; }
+  .bl { bottom: -5px; left: -5px; border-right: 0; border-top: 0; }
+  .br { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+
+  .teaser-card:hover .corner { opacity: 1; }
+
+  /* Hover FX Text */
+  .card-hover-fx {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%) rotate(-90deg);
+    font-family: monospace;
+    font-size: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s, left 0.3s;
+    pointer-events: none;
+    color: var(--red);
+  }
+  .teaser-card:hover .card-hover-fx {
+    opacity: 1;
+    left: -60px;
+  }
+
+  /* ── FOOTER ── */
+  .hub-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,245,230,0.1);
+    padding-top: 1rem;
+  }
+  .ticker-wrap {
+    width: 400px;
+    overflow: hidden;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    opacity: 0.3;
+  }
+  .ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 15s linear infinite;
+  }
+  @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+  #coord-display {
+    font-family: monospace;
+    font-size: 0.7rem;
+    opacity: 0.3;
+  }
+
+  /* ── CURSOR ── */
+  #custom-cursor {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--cream);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: transform 0.1s;
+  }
+
+  @media (max-width: 768px) {
+    .hub-ui { padding: 1.5rem 1rem; }
+    .header-spacer { height: 80px !important; }
+    
+    .teaser-grid {
+      justify-content: flex-start;
+      padding-top: 1rem;
+    }
+    
+    .grid-label {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .cards-container { 
+      gap: 2rem;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 5rem; /* Space for footer */
+      overflow-y: auto;
+      max-height: calc(100vh - 200px);
+      scrollbar-width: none;
+    }
+    .cards-container::-webkit-scrollbar { display: none; }
+
+    .teaser-card { 
+      width: 100%; 
+      max-width: 300px;
+      height: 420px; 
+    }
+    
+    .card-title { font-size: 1.5rem; }
+    
+    .hub-footer {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    .footer-right { display: none; } /* Hide coords on mobile */
+    .ticker-wrap { width: 100%; }
+
+    /* Disable custom cursor on mobile */
+    #custom-cursor { display: none; }
+    .teaser-hub { cursor: auto; }
+  }
+
+  @media (max-width: 480px) {
+    .teaser-card {
+      height: 380px;
+    }
+  }
 </style>
 
 <script>
-	// ── GUARD: always show splash on refresh ──
-	(function () {
-		const ts = sessionStorage.getItem("splashTs");
-		const fresh = ts && Date.now() - parseInt(ts) < 5000;
-		if (!fresh) {
-			window.location.replace("/splash");
-		}
-	})();
+  // CURSOR
+  const cursor = document.getElementById('custom-cursor');
+  const coords = document.getElementById('coord-display');
 
-	// VHS CLOCK
-	const vhsClock = document.getElementById("vhs-clock");
-	setInterval(() => {
-		if (vhsClock) {
-			const n = new Date();
-			vhsClock.innerText = `${n.toTimeString().split(" ")[0]}:${String(n.getMilliseconds()).padStart(3, "0").slice(0, 2)}`;
-		}
-	}, 100);
+  window.addEventListener('mousemove', (event) => {
+    const e = event as MouseEvent;
+    if (cursor) {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    }
+    if (coords) {
+      coords.innerText = `X: ${String(e.clientX).padStart(3, '0')} Y: ${String(e.clientY).padStart(3, '0')}`;
+    }
+  });
 
-	// RANDOM FLASHES
-	const flash = document.getElementById("flash-lay") as HTMLElement;
-	setInterval(() => {
-		if (flash && Math.random() > 0.985) {
-			flash.style.opacity = "0.4";
-			setTimeout(() => { if (flash) flash.style.opacity = "0" }, 100);
-		}
-	}, 200);
+  // CARD TILT (Advanced)
+  const cards = document.querySelectorAll('.teaser-card');
+  const scanlines = document.querySelector('.scanlines');
 
-	// CURSOR + LENS + TILT
-	const blurLens = document.getElementById("mouse-blur") as HTMLElement;
-	const customCursor = document.getElementById("custom-cursor") as HTMLElement;
-	const coverCard = document.getElementById("cover-card") as HTMLElement;
-	const glitchFlash = document.getElementById("glitch-lay") as HTMLElement;
+  cards.forEach(card => {
+    const shine = card.querySelector('.card-shine') as HTMLElement;
 
-	window.addEventListener("mousemove", (e) => {
-		const { clientX: x, clientY: y } = e;
-		if (blurLens) {
-			blurLens.style.left = x + "px";
-			blurLens.style.top = y + "px";
-		}
-		if (customCursor) {
-			customCursor.style.left = x + "px";
-			customCursor.style.top = y + "px";
-		}
-		if (coverCard && !coverCard.classList.contains("flipped")) {
-			const rx = (x - window.innerWidth / 2) / (window.innerWidth / 2);
-			const ry = (y - window.innerHeight / 2) / (window.innerHeight / 2);
-			coverCard.style.transform = `perspective(2000px) rotateY(${rx * 12}deg) rotateX(${ry * -12}deg)`;
-		}
-	});
+    card.addEventListener('mousemove', (event) => {
+      const e = event as MouseEvent;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      (card as HTMLElement).style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px) scale(1.02)`;
+      
+      // Update shine position
+      if (shine) {
+        const shineX = (x / rect.width) * 200 - 100;
+        shine.style.transform = `translateX(${shineX}%) skewX(-20deg)`;
+        shine.style.opacity = '1';
+      }
 
-	// CARD FLIP + MINI-GLITCH
-	if (coverCard) {
-		coverCard.addEventListener("click", () => {
-			if (glitchFlash) {
-				glitchFlash.classList.add("trigger");
-				setTimeout(() => { if (glitchFlash) glitchFlash.classList.remove("trigger") }, 200);
-			}
-			coverCard.classList.toggle("flipped");
-			if (coverCard.classList.contains("flipped"))
-				coverCard.style.transform = "rotateY(180deg)";
-		});
+      // Activate scanlines
+      if (scanlines) scanlines.classList.add('active');
+    });
 
-		coverCard.addEventListener("mouseenter", () => {
-			if (blurLens) blurLens.style.opacity = "0";
-		});
+    card.addEventListener('mouseleave', () => {
+      (card as HTMLElement).style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+      if (shine) {
+        shine.style.opacity = '0';
+      }
+      if (scanlines) scanlines.classList.remove('active');
+    });
+  });
 
-		coverCard.addEventListener("mouseleave", () => {
-			if (blurLens) blurLens.style.opacity = "1";
-		});
-	}
-
-	// EXIT on info button
-	const infoBtn = document.getElementById("info-btn");
-	if (infoBtn) {
-		infoBtn.addEventListener("click", (e) => {
-			e.preventDefault();
-			const href = infoBtn.getAttribute("href");
-			const exitGlitch = document.getElementById("t-exit-glitch");
-			const exitCream = document.getElementById("t-exit-cream") as HTMLElement;
-
-			if (exitGlitch) exitGlitch.classList.add("fire");
-			
-			setTimeout(() => {
-				if (exitCream) {
-					exitCream.style.opacity = "1";
-					exitCream.classList.add("fire");
-				}
-				setTimeout(() => {
-					if (href) window.location.href = href;
-				}, 380);
-			}, 550);
-		});
-	}
+  // INITIAL DECRYPTION ANIMATION
+  window.addEventListener('load', () => {
+    document.body.classList.add('is-decrypting');
+    setTimeout(() => {
+      document.body.classList.remove('is-decrypting');
+    }, 1500);
+  });
 </script>
-

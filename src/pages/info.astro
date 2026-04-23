@@ -1317,12 +1317,5 @@ import Footer from "../components/Footer.astro";
     });
   });
 
-  // ── GUARD: always show splash on refresh ──
-  (function () {
-    const ts = sessionStorage.getItem("splashTs");
-    const fresh = ts && Date.now() - parseInt(ts) < 10000;
-    if (!fresh) {
-      window.location.replace("/splash");
-    }
-  })();
+
 </script>
